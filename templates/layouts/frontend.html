@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+{% include 'includes/frontend/head.html' %}
+
+<body class="home">
+    <div class="page-wrapper">
+        {% include 'includes/frontend/header.html' %}
+
+        {% block content %}{% endblock content %}
+
+        {% include 'includes/frontend/footer.html' %}
+
+    </div>
+
+    {% include 'includes/frontend/sticky_footer.html' %}
+
+    <a id="scroll-top" class="scroll-top" href="demo1.html#top" title="Top" role="button"> <i
+            class="p-icon-arrow-up"></i>
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 70 70">
+            <circle id="progress-indicator" fill="transparent" stroke="#000000" stroke-miterlimit="10" cx="35" cy="35"
+                r="34" style="stroke-dasharray: 108.881, 400;"></circle>
+        </svg>
+    </a>
+
+    {% include 'includes/frontend/mobile_menu.html' %}
+
+    {% include 'includes/frontend/scripts.html' %}
+</body>
+
+</html>
