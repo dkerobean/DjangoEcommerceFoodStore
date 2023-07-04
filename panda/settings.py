@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'Frontend.apps.FrontendConfig'
+    'frontend.apps.FrontendConfig'
 ]
 
 MIDDLEWARE = [
@@ -123,7 +123,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIR = [
-    BASE_SIR / 'static'
+    BASE_DIR / 'static'
 ]
 
 MEDIA_URL = 'images'
