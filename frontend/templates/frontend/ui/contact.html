@@ -1,0 +1,132 @@
+{% extends 'layouts/frontend.html' %}
+
+{% load static %}
+
+{% block content %}
+
+   <main class="main">
+            <div class="page-header" style="background-color: #f9f8f4">
+                <h1 class="page-title font-weight-light text-capitalize pt-2">Contact Us</h1>
+            </div>
+            <nav class="breadcrumb-nav has-border">
+                <div class="container">
+                    <ul class="breadcrumb">
+                        <li><a href="https://d-themes.com/html/panda/demo1.html">Home</a></li>
+                        <li>Contact Us</li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="page-content contact-page">
+                <div class="container">
+                    <section class="mt-10 pt-8">
+                        <h2 class="title title-center mb-8">Contact Information</h2>
+                        <div class="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-sm-2 cols-1 mb-10"
+                            data-owl-options="{
+                                'nav': false,
+                                'dots': false,
+                                'loop': false,
+                                'margin': 20,
+                                'autoplay': true,
+                                'responsive': {
+                                    '0': {
+                                        'items': 1,
+                                        'autoplay': true
+                                    },
+                                    '576': {
+                                        'items': 2
+                                    },
+                                    '768': {
+                                        'items': 3
+                                    },
+                                    '992': {
+                                        'items': 4,
+                                        'autoplay': false
+                                    }
+                                }
+                            }">
+                            <div class="icon-box text-center">
+                                <span class="icon-box-icon mb-4">
+                                    <i class="p-icon-map"></i>
+                                </span>
+                                <div class="icon-box-content">
+                                    <h4 class="icon-box-title">Address</h4>
+                                    <p class="text-dim">121 King Street, New York</p>
+                                </div>
+                            </div>
+                            <div class="icon-box text-center">
+                                <span class="icon-box-icon mb-4">
+                                    <i class="p-icon-phone-solid"></i>
+                                </span>
+                                <div class="icon-box-content">
+                                    <h4 class="icon-box-title">Phone Number</h4>
+                                    <p class="text-dim">+1 (456) 789 000</p>
+                                </div>
+                            </div>
+                            <div class="icon-box text-center">
+                                <span class="icon-box-icon mb-4">
+                                    <i class="p-icon-message"></i>
+                                </span>
+                                <div class="icon-box-content">
+                                    <h4 class="icon-box-title">E-mail Address</h4>
+                                    <p class="text-dim"><a href="https://d-themes.com/cdn-cgi/l/email-protection"
+                                            class="__cf_email__"
+                                            data-cfemail="701d11191c301508111d001c155e131f1d">[email&#160;protected]</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="icon-box text-center">
+                                <span class="icon-box-icon mb-4">
+                                    <i class="p-icon-clock"></i>
+                                </span>
+                                <div class="icon-box-content">
+                                    <h4 class="icon-box-title">Opening Hours</h4>
+                                    <p class="text-dim">Mon-Fri: 10:00 - 18:00</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </section>
+                    <section class="mt-10 pt-2 mb-10 pb-8">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <figure>
+                                    <img src="{% static 'images/subpage/contact/1.jpg' %}" width="600" height="557"
+                                        alt="About Image" />
+                                </figure>
+                            </div>
+                            <div class="col-md-6 pl-md-4 mt-8 mt-md-0">
+                                <h2 class="title mb-1">Leave a Comment</h2>
+                                <p class="mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.
+                                </p>
+                                <form action="contact.html#">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <input type="text" id="comment-name" name="comment-name"
+                                                placeholder="Your Name" required>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <input type="email" id="comment-email" name="comment-email"
+                                                placeholder="Your Email" required>
+                                        </div>
+                                        <div class="col-12 mb-4">
+                                            <input type="text" id="comment-subject" name="comment-subject"
+                                                placeholder="Your Subject" required>
+                                        </div>
+                                        <div class="col-12 mb-4">
+                                            <textarea id="comment-message" placeholder="Your Message"
+                                                required></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark">Send Message</button>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="bg-light google-map" id="googlemaps" style="height: 45rem;"></div>
+
+            </div>
+    </main>
+
+{% endblock content %}
