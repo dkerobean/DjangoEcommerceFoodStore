@@ -93,7 +93,7 @@
                             </form>
                         </div>
                         <div class="dropdown login-dropdown off-canvas">
-                            
+                            <!-- Login Condition -->
                             {% if request.user.is_authenticated %}
                                 <a class="login-toggle" href="{% url 'contact' %}">
                                     <span class="sr-only">Dashboard</span>
@@ -106,8 +106,6 @@
                                 </a>
                             {% endif %}
                                 
-                            
-
                             <div class="canvas-overlay"></div>
                             <a href="demo1.html#" class="btn-close"></a>
                             <div class="dropdown-box scrollable">
@@ -126,6 +124,7 @@
                                             </ul>
                                             <div class="tab-content">
                                                 <div class="tab-pane active" id="signin">
+                                                    <!-- login form -->
                                                     <form action="{% url 'login' %}" method="POST">
                                                         {% csrf_token %}
                                                         <div class="form-group">
@@ -160,6 +159,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane" id="register">
+                                                    <!-- register form -->
                                                     <form action="{% url 'register' %}" method="POST">
                                                         {% csrf_token %}
                                                         <div class="form-group">
