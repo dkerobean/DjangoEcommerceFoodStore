@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 
 
-@reciever(post_save, sender=User)
+@receiver(post_save, sender=User)
 def create_profile(sender, created, instance, **kwargs):
     
     if created:
