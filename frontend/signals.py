@@ -9,14 +9,12 @@ def create_profile(sender, created, instance, **kwargs):
     
     if created:
         user = instance
-        profile = UserProfile.create(
-            user = user,
-            username = user.username,
-            email = user.email
-            
+        profile = UserProfile.objects.create(
+            user = user, 
+            email = user.email   
         )
         
-@reciever(post_delete, sender=User)        
+@receiver(post_delete, sender=User)        
 def delete_profile(sender, instance, **kwargs):
     
     user = instance.user

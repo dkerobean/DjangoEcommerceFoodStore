@@ -151,16 +151,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane" id="register">
-                                                    <form action="demo1.html#">
+                                                    <form action="{% url 'register' %}" method="POST">
+                                                        {% csrf_token %}
                                                         <div class="form-group">
-                                                            <input type="text" id="register-user" name="register-user"
-                                                                placeholder="Username" required>
-                                                            <input type="email" id="register-email"
-                                                                name="register-email" placeholder="Your Email Address"
-                                                                required>
-                                                            <input type="password" id="register-password"
-                                                                name="register-password" placeholder="Password"
-                                                                required>
+                                                            {% for field in form %}
+                                                                {{field }}
+
+                                                                {% for error in field.errors  %}
+                                                                    <p style="color:red;">{{error}}</p>
+                                                                {% endfor %}
+
+                                                            {% endfor %}
+                                                                                                                        
                                                         </div>
                                                         <div class="form-footer mb-5">
                                                             <div class="form-checkbox">
