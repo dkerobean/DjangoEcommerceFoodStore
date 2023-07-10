@@ -126,6 +126,13 @@ def index_page(request):
     return render(request, 'frontend/ui/index.html', context)
 
 
+def account_dashboard(request):
+    
+    #user = Profile.objects.get(id=pk)
+    
+    return render(request, 'frontend/ui/account.html')
+
+
 def shop_page(request):
 
     return render(request, 'frontend/ui/shop.html')

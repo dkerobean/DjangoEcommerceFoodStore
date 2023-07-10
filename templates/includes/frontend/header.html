@@ -9,9 +9,9 @@
                             <span>+456 789 000</span>
                         </a>
                         <span class="divider"></span>
-                        <a href="https://d-themes.com/html/panda/contact.html" class="contact">
+                        <a href="#" class="contact">
                             <i class="p-icon-map"></i>
-                            <span>25 West 21th STREET, Miami FL, USA</span>
+                            <span>1 address place location</span>
                         </a>
                     </div>
                     <div class="header-right">
@@ -92,10 +92,10 @@
                                 </button>
                             </form>
                         </div>
-                        <div class="dropdown login-dropdown off-canvas">
+                        <div class=" login-dropdown off-canvas">
                             <!-- Login Condition -->
                             {% if request.user.is_authenticated %}
-                                <a class="login-toggle" href="{% url 'contact' %}">
+                                <a class="wishlist wishlist-toggle" href="{% url 'user-dashboard' %}">
                                     <span class="sr-only">Dashboard</span>
                                     <i class="p-icon-user-solid"></i>
                                 </a>
@@ -103,7 +103,7 @@
                                 <a class="login-toggle" href="#"data-toggle="login-modal">
                                     <span class="sr-only">Login</span>
                                     <i class="p-icon-user-solid"></i>
-                                </a>
+                                </a> 
                             {% endif %}
                                 
                             <div class="canvas-overlay"></div>
