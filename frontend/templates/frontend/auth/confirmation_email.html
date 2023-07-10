@@ -1,0 +1,16 @@
+<!-- confirmation_email.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Account Activation</title>
+</head>
+<body>
+    <h2>Account Activation</h2>
+    <p>Hello {{ user.username }},</p>
+    <p>Thank you for registering an account. Please click the link below to activate your account:</p>
+    {% csrf_token %}
+    <a href="{{ activation_link }}">Activate Account</a>
+</body>
+</html>

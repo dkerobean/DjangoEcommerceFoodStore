@@ -14,11 +14,14 @@ def create_profile(sender, created, instance, **kwargs):
             email = user.email   
         )
         
-@receiver(post_delete, sender=User)        
+
+@receiver(post_delete, sender=User)
 def delete_profile(sender, instance, **kwargs):
-    
-    user = instance.user
-    user.delete()
+    try:
+        profile = instance.userprofile
+        profile.delete()
+    except UserProfile.DoesNotExist:
+        pass
     
     
         

@@ -8,5 +8,7 @@ urlpatterns = [
     path('contact/', views.contact_page, name="contact"), 
     
     path('login/', views.user_login, name="login"),
-    path('register/', views.user_register, name="register")
+    path('register/', views.user_register, name="register"), 
+    
+    path('activate/<str:uidb64>/<str:token>/', views.activate_user_account, name='activate'),
 ]
