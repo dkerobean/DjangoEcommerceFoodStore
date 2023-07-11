@@ -38,8 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'frontend.apps.FrontendConfig'
-]
+    'frontend.apps.FrontendConfig',
+    
+    'social_django',
+    'allauth',
+    'allauth.account',
+     
+]   
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,6 +78,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'panda.wsgi.application'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+
+)
 
 
 # Database
@@ -142,3 +156,13 @@ MEDIA_ROOT = BASE_DIR / 'static/images'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '3434130570132773'
+SOCIAL_AUTH_FACEBOOK_SECRET = '8ddb79468e3bcb1a0e8a0feb27df1f86'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '761683865308-n9cjs12miua126t0e8450kgde0nj949k.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+LOGIN_REDIRECT_URL = '/'
+
+

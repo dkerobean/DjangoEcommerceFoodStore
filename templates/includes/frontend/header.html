@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <header class="header">
             <div class="header-top">
                 <div class="container">
@@ -92,7 +93,7 @@
                                 </button>
                             </form>
                         </div>
-                        <div class=" login-dropdown off-canvas">
+                        <div class="dropdown login-dropdown off-canvas">
                             <!-- Login Condition -->
                             {% if request.user.is_authenticated %}
                                 <a class="wishlist wishlist-toggle" href="{% url 'user-dashboard' %}">
@@ -148,13 +149,16 @@
                                                     </form>
                                                     <div class="form-choice text-center">
                                                         <label>or Login With</label>
-                                                        <div class="social-links social-link-active ">
-                                                            <a href="demo1.html#" title="Facebook"
+                                                        <div class="social-links social-link-active">
+                                                            <a href="{% url 'social:begin' 'facebook' %}" title="Facebook"
                                                                 class="social-link social-facebook fab fa-facebook-f"></a>
-                                                            <a href="demo1.html#" title="Twitter"
+                                                            <a href="{% url 'social:begin' 'google-oauth2' %}" title="Twitter"
                                                                 class="social-link social-twitter fab fa-twitter"></a>
-                                                            <a href="demo1.html#" title="Linkedin"
-                                                                class="social-link social-linkedin fab fa-linkedin-in"></a>
+                                                            <a href="demo1.html#" title="Google" 
+                                                                class="social-link social-google fa-brands fa-google"></a>
+                                                                
+                                                                
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -187,10 +191,10 @@
                                                     </form>
                                                     <div class="form-choice text-center">
                                                         <label class="ls-m">or Register With</label>
-                                                        <div class="social-links social-link-active ">
-                                                            <a href="demo1.html#" title="Facebook"
+                                                        <div class="social-links social-link-active">
+                                                            <a href="{% url 'social:begin' 'facebook' %}" title="Facebook"
                                                                 class="social-link social-facebook fab fa-facebook-f"></a>
-                                                            <a href="demo1.html#" title="Twitter"
+                                                            <a href="{% url 'social:begin' 'google-oauth2' %}" title="Twitter"
                                                                 class="social-link social-twitter fab fa-twitter"></a>
                                                             <a href="demo1.html#" title="Linkedin"
                                                                 class="social-link social-linkedin fab fa-linkedin-in"></a>

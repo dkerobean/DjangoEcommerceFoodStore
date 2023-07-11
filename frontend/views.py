@@ -49,6 +49,7 @@ def user_login(request):
 def user_logout(request):
     
     auth_logout(request)
+    messages.success(request, 'Logged Out')
     return redirect('index')
 
     return render(request, 'frontend/ui/index.html')
