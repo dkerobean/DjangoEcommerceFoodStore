@@ -41,7 +41,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link no-tab-item"
-                                    href="https://d-themes.com/html/panda/login.html">Logout</a>
+                                    href="{% url 'user-logout' %}">Logout</a>
                             </li>
                         </ul>
                         <div class="tab-content col-lg-9 col-md-8">
@@ -121,7 +121,7 @@
                                     </div>
                                     <div class="ib-wrapper mb-4">
                                         <div class="icon-box text-center ib-border"><a
-                                                href="https://d-themes.com/html/panda/login.html" class="no-tab-item">
+                                                href="{% url 'user-logout' %}" class="no-tab-item">
                                                 <span class="icon-box-icon">
                                                     <i class="p-icon-logout"></i>
                                                 </span>

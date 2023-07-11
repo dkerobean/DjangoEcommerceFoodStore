@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
+from django.contrib.auth import logout as auth_logout
 from .forms import UserRegistrationForm
 
 from django.contrib.sites.shortcuts import get_current_site
@@ -43,6 +44,13 @@ def user_login(request):
         return redirect('contact')
         
          
+    return render(request, 'frontend/ui/index.html')
+
+def user_logout(request):
+    
+    auth_logout(request)
+    return redirect('index')
+
     return render(request, 'frontend/ui/index.html')
 
 
