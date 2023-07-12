@@ -32,11 +32,20 @@ class Address(models.Model):
     
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    picture = models.ImageField(
+        upload_to='category_pictures/', blank=True, null=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
 
     def __str__(self):
         return self.name
+    
+
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
+    
 
 
 class Product(models.Model):
@@ -48,11 +57,13 @@ class Product(models.Model):
     product_picture = models.ImageField(
         upload_to='product_pictures/', blank=True, null=True)
     category = models.ManyToManyField(Category)
+    tags = models.ManyToManyField(Tag)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
 
     def __str__(self):
         return self.name 
+    
 
 
 class Order(models.Model):
