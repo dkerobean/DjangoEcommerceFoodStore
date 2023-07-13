@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'frontend.apps.FrontendConfig',
+    'admin_dashboard.apps.AdminDashboardConfig',
     
     'social_django',
     'allauth',
