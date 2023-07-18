@@ -65,6 +65,7 @@ def admin_logout(request):
 
 def add_category(request):
     
+    # add category
     if request.method == "POST":
         name = request.POST["name"]
         image = request.FILES.get("category_image")
@@ -78,7 +79,34 @@ def add_category(request):
         category_object.save()
         messages.success(request, "Category created")
         return redirect('add-category')
-        
-        
+    
+    
+    categories = Category.objects.all()
+    
+    context = {
+        'categories':categories
+    }
+    
+       
+    return render(request, 'admin_dashboard/category/add_category.html', context)
+
+
+def delete_category(request, pk):
+    
+    category_id = Category.objects.get(id=pk)
+    
+    try:
+        category_id.delete()
+        messages.success(request, "Deleted Successfully")
+        return redirect('add-category')
+    except CategoryNotFound:
+        messages.error(request, "Category Not Found")
+        return redirect('add-category')
+    
     return render(request, 'admin_dashboard/category/add_category.html')
+    
+    
+    
+    
+    
     

@@ -62,9 +62,10 @@
 											</thead>
 
 											<tbody>
-												<tr>
-													<td><img class="cat-thumb" src="assets/img/category/clothes.png" alt="Product Image" /></td>
-													<td>Clothes</td>													
+                                                {% for category in categories %}
+                                                    <tr>
+													<td><img class="cat-thumb" src="{{ category.picture.url }}" alt="Product Image" /></td>
+													<td>{{ category.name|capfirst }}</td>													
 													<td>28</td>													
 													<td>ACTIVE</td>
 													<td><span class="badge badge-success">Top</span></td>
@@ -81,11 +82,13 @@
 
 															<div class="dropdown-menu">
 																<a class="dropdown-item" href="#">Edit</a>
-																<a class="dropdown-item" href="#">Delete</a>
+																<a class="dropdown-item" href="{% url 'delete-category' category.id %}">Delete</a>
 															</div>
 														</div>
 													</td>
 												</tr>
+                                                {% endfor %}
+												
 												
 												
 											</tbody>
