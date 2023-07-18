@@ -43,6 +43,7 @@ class Category(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
+    product = models.ManyToManyField("Product")
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
     
@@ -57,7 +58,6 @@ class Product(models.Model):
     product_picture = models.ImageField(
         upload_to='product_pictures/', blank=True, null=True)
     category = models.ManyToManyField(Category)
-    tags = models.ManyToManyField(Tag)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
 

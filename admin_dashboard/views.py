@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from frontend.models import Category
+from frontend.models import Category, Product
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .forms import AddProductForm
 
 
 @login_required(login_url="admin-login")
@@ -104,6 +105,41 @@ def delete_category(request, pk):
         return redirect('add-category')
     
     return render(request, 'admin_dashboard/category/add_category.html')
+
+
+""" PRODUCT """
+
+def add_product(request):
+    
+    form = AddProductForm()
+    
+    if request.method == "POST":
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Product Added")
+            return redirect('add-product')
+        else:
+            messages.error(request, 'Something went wrong')
+            return redirect('add-product')
+        
+    context = {
+        'form': form
+    }
+                
+    
+    return render(request, 'admin_dashboard/product/add_product.html', context)
+
+
+def view_products(request):
+    
+    products = Product.objects.all()
+    
+    
+    
+    return render(request, 'admin_dashboard/product/add_product.html', context)
+    
+    
     
     
     
