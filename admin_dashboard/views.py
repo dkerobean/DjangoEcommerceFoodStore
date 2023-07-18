@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from frontend.models import Category
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
@@ -64,5 +65,20 @@ def admin_logout(request):
 
 def add_category(request):
     
+    if request.method == "POST":
+        name = request.POST["name"]
+        image = request.FILES.get("category_image")
+        
+        # check if fields are provided
+        if not name and image:
+            messages.error(request, "Pleae provide both name and image")
+            return redirect('add-category')
+        
+        category_object = Category.objects.create(name=name, picture=image)
+        category_object.save()
+        messages.success(request, "Category created")
+        return redirect('add-category')
+        
+        
     return render(request, 'admin_dashboard/category/add_category.html')
     
