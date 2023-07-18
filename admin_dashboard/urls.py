@@ -9,6 +9,7 @@ urlpatterns = [
     path('logout/', views.admin_logout, name="admin-logout"),
     
     path('add_category/', views.add_category, name="add-category"),
+<<<<<<< HEAD
     path('delete_category/<str:pk>/', views.delete_category, name="delete-category"),
     
     path('add_product/', views.add_product, name="add-product"),
@@ -22,4 +23,6 @@ urlpatterns = [
     
     path('all_users/', views.list_users, name="list-users"),
     path('deactivate_user/<str:pk>/', views.deactivate_user, name="deactivate-user"),
+=======
+>>>>>>> 06b121e (setup of category page)
 ]
