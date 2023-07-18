@@ -135,9 +135,12 @@ def view_products(request):
     
     products = Product.objects.all()
     
+    context = {
+        'products' : products
+    }
     
     
-    return render(request, 'admin_dashboard/product/add_product.html', context)
+    return render(request, 'admin_dashboard/product/view_products.html', context)
     
     
     
