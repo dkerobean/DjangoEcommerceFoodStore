@@ -12,6 +12,8 @@ def admin_dashboard(request):
     return render(request, 'admin_dashboard/index.html')
 
 
+""" AUTH """
+
 def admin_login(request):
     
     user = request.user 
@@ -56,3 +58,11 @@ def admin_logout(request):
     auth_logout(request)
     messages.success(request, 'Logged Out')
     return redirect('admin-login')
+
+
+""" CATEGORY """
+
+def add_category(request):
+    
+    return render(request, 'admin_dashboard/category/add_category.html')
+    
