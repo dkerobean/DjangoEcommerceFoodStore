@@ -65,13 +65,17 @@
                                                             <p>${{ product.price }}</p>
                                                         </div>
                                                         <div class="card-action">
-                                                            <div class="card-edit"><i
-                                                                    class="mdi mdi-circle-edit-outline"></i></div>
-                                                            <div class="card-preview"><i class="mdi mdi-eye-outline"></i>
-                                                            </div>
-                                                            <div class="card-remove"><i
-                                                                    class="mdi mdi mdi-delete-outline"></i></div>
-                                                        </div>
+															<a href="{% url 'edit-product' product.id %}" class="card-edit">
+																<i class="mdi mdi-circle-edit-outline"></i>
+															</a>
+															<a href="{% url 'product-details' product.id %}" class="card-preview">
+																<i class="mdi mdi-eye-outline"></i>
+															</a>
+															<a href="link_to_remove_page" class="card-remove">
+																<i class="mdi mdi mdi-delete-outline"></i>
+															</a>
+														</div>
+
                                                     </div>
                                                 </div>
 										    </div>

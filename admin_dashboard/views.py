@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import AddProductForm
 
 
-@login_required(login_url="admin-login")
+
 def admin_dashboard(request):
     
     return render(request, 'admin_dashboard/index.html')
@@ -141,6 +141,42 @@ def view_products(request):
     
     
     return render(request, 'admin_dashboard/product/view_products.html', context)
+
+
+def product_detail(request, pk):
+    
+    product = Product.objects.get(id=pk)
+    
+    context = {
+        'product' : product
+    }
+    
+    return render(request, 'admin_dashboard/product/product_details.html', context)
+
+
+def edit_product(request, pk):
+    
+    product = Product.objects.get(id=pk)
+    
+    form = AddProductForm(instance=product)
+    
+    if request.method == "POST":
+        form = AddProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Prduct Edited Succesfully')
+            return redirect('view-products')
+        else:
+            messages.error(request, 'Something went wrong')
+            return redirect('view-products')
+        
+    context = {
+        'form':form
+    }
+            
+    
+    
+    return render(request, 'admin_dashboard/product/add_product.html', context)
     
     
     
