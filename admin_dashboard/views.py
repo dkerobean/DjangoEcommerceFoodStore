@@ -5,10 +5,15 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 from .forms import AddProductForm
 
-
-
+# check if user is Admin
+def is_staff(user):
+    return user.is_staff and user.is_authenticated
+    
+    
+@user_passes_test(is_staff)
 def admin_dashboard(request):
     
     return render(request, 'admin_dashboard/index.html')
@@ -64,6 +69,7 @@ def admin_logout(request):
 
 """ CATEGORY """
 
+@user_passes_test(is_staff)
 def add_category(request):
     
     # add category
@@ -92,6 +98,7 @@ def add_category(request):
     return render(request, 'admin_dashboard/category/add_category.html', context)
 
 
+@user_passes_test(is_staff)
 def delete_category(request, pk):
     
     category_id = Category.objects.get(id=pk)
@@ -109,6 +116,7 @@ def delete_category(request, pk):
 
 """ PRODUCT """
 
+@user_passes_test(is_staff)
 def add_product(request):
     
     form = AddProductForm()
@@ -131,6 +139,7 @@ def add_product(request):
     return render(request, 'admin_dashboard/product/add_product.html', context)
 
 
+@user_passes_test(is_staff)
 def view_products(request):
     
     products = Product.objects.all()
@@ -143,6 +152,8 @@ def view_products(request):
     return render(request, 'admin_dashboard/product/view_products.html', context)
 
 
+@login_required(login_url="admin-login")
+@user_passes_test(is_staff)
 def product_detail(request, pk):
     
     product = Product.objects.get(id=pk)
@@ -154,6 +165,7 @@ def product_detail(request, pk):
     return render(request, 'admin_dashboard/product/product_details.html', context)
 
 
+@user_passes_test(is_staff)
 def edit_product(request, pk):
     
     product = Product.objects.get(id=pk)
@@ -174,7 +186,6 @@ def edit_product(request, pk):
         'form':form
     }
             
-    
     
     return render(request, 'admin_dashboard/product/add_product.html', context)
     
