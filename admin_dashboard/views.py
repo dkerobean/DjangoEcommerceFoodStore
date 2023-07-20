@@ -192,6 +192,7 @@ def edit_product(request, pk):
 
 """ TAGS """
 
+@user_passes_test(is_staff)
 def create_tag(request):
     
     if request.method == "POST":
@@ -213,6 +214,21 @@ def create_tag(request):
         
         
     return render(request, 'admin_dashboard/tag/add_tag.html', conntext)
+
+
+@user_passes_test(is_staff)
+def delete_tag(request, id):
+    
+    tag = Tag.objects.get(id=pk)
+    
+    try:
+        tag.delete()
+        messages.success(request, 'Tag deleted')
+        return redirect('create-tag')
+    except TagNotFound:
+        messages.error(request, 'Tag not found')
+    
+    return render(request, 'admin_dashboard/tag/add_tag.html')
     
     
     
