@@ -1,9 +1,10 @@
 from django.forms import ModelForm
 from frontend.models import Product
+from django import forms
+from frontend.models import Category, Tag
 
 
 class AddProductForm(ModelForm):
-    
     class Meta:
         model = Product
         fields = '__all__'
@@ -14,5 +15,22 @@ class AddProductForm(ModelForm):
         for name, field in self.fields.items():
             field.widget.attrs.update({'class': 'form-control'})
             
+        self.fields['category'].widget = forms.CheckboxSelectMultiple()
+        self.fields['category'].queryset = Category.objects.all()
+        
+        self.fields['tag'].widget = forms.CheckboxSelectMultiple()
+        self.fields['tag'].queryset = Tag.objects.all()
+        
         self.fields['category'].widget.attrs.update(
-            {'id': 'Categories', 'class': 'form-select'})
+            {'class': 'form-check form-check-inline',
+             'type': 'checkbox'}),
+        
+        self.fields['tag'].widget.attrs.update(
+            {'class': 'form-check form-check-inline mb-3',
+             'type': 'checkbox'}),
+        
+        # self.fields['product_picture'].widget.attrs.update(
+        #     {'class': 'ec-image-upload', 'id': 'imageUpload',
+        #     'type': 'file'})
+        
+        
