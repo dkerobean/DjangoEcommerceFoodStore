@@ -15,4 +15,6 @@ urlpatterns = [
     path('view_products/', views.view_products, name="view-products"),
     path('product_details/<str:pk>/', views.product_detail, name="product-details"), 
     path('edit_product/<str:pk>/', views.edit_product, name="edit-product"),
+    
+    path('add_tag/', views.create_tag, name="create-tag"), 
 ]

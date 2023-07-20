@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from frontend.models import Category, Product
+from frontend.models import Category, Product, Tag
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
@@ -188,6 +188,31 @@ def edit_product(request, pk):
             
     
     return render(request, 'admin_dashboard/product/add_product.html', context)
+
+
+""" TAGS """
+
+def create_tag(request):
+    
+    if request.method == "POST":
+        tagname = request.POST['tagName']
+        
+        if not tagname:
+            messages.error(request, 'Please enter a tag name')
+            
+        tag = Tag.objects.create(name=tagname)
+        tag.save()
+        messages.success(request, "Tag created")
+        return redirect('create-tag')
+        
+    tags = Tag.objects.all()
+    
+    conntext = {
+        'tags' : tags
+    }
+        
+        
+    return render(request, 'admin_dashboard/tag/add_tag.html', conntext)
     
     
     
