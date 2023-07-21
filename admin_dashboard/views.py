@@ -229,7 +229,21 @@ def delete_tag(request, id):
         messages.error(request, 'Tag not found')
     
     return render(request, 'admin_dashboard/tag/add_tag.html')
+
+
+""" USER LIST """
+
+def list_users(request):
     
+    all_users = User.objects.all()
+    
+    
+    context = {
+        'all_users': all_users
+    }
+    
+    
+    return render(request, 'admin_dashboard/users/list_users.html', context)
     
     
     

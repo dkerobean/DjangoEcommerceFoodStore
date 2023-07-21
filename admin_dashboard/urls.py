@@ -18,4 +18,6 @@ urlpatterns = [
     
     path('add_tag/', views.create_tag, name="create-tag"), 
     path('delete_tag/<str:pk/', views.delete_tag, name="delete-tag"),
+    
+    path('all_users/', views.list_users, name="list-users"),
 ]
