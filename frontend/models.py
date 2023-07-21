@@ -18,7 +18,7 @@ class UserProfile(models.Model):
 
 class Address(models.Model):
     user_profile = models.ForeignKey(
-        UserProfile, on_delete=models.CASCADE, related_name='addresses')
+        UserProfile, on_delete=models.CASCADE, related_name='address')
     country = models.CharField(max_length=100)
     address = models.TextField()
     state = models.CharField(max_length=100)

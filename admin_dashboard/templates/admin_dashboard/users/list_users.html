@@ -32,6 +32,7 @@
 													<th>Name</th>
 													<th>Email</th>
 													<th>Phone</th>
+                                                    <td>Address</td>
 													<th>Total Buy</th>
 													<th>Status</th>
 													<th>Join On</th>
@@ -40,32 +41,47 @@
 											</thead>
 
 											<tbody>
-																								
+                                            {% for user in all_users %}
 												<tr>
-													<td>Jeni Dusuja</td>
-													<td>jenidusuja@gmail.com</td>
-													<td>+1-967-325-1122</td>
+													<td>{{ user.username }}</td>
+													<td>{{ user.email }}</td>
+													<td>{{ user.profile.address.phone_number }}</td>
+                                                    <td>Accra Ghana</td>
 													<td>6061</td>
-													<td>ACTIVE</td>
+                                                    
+                                                    {% if user.is_active %}
+                                                        <td>
+                                                            <button type="button"
+                                                                        class="btn btn-outline-success">Active</button>
+                                                        </td>
+                                                    {% else %}
+                                                        <td>
+                                                            <button type="button"
+                                                                        class="btn btn-outline-warning">Pending</button>
+                                                        </td>                                                        
+                                                    {% endif %}
+                                                        													
 													<td>2021-10-01</td>
-													<td>
-														<div class="btn-group mb-1">
-															<button type="button"
-																class="btn btn-outline-success">Info</button>
-															<button type="button"
-																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-																data-bs-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false" data-display="static">
-																<span class="sr-only">Info</span>
-															</button>
+                                                    
+                                                        <td>
+                                                            <div class="btn-group mb-1">
+                                                                <button type="button"
+                                                                    class="btn btn-outline-success">Info</button>
+                                                                <button type="button"
+                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false" data-display="static">
+                                                                    <span class="sr-only">Info</span>
+                                                                </button>
 
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">Edit</a>
-																<a class="dropdown-item" href="#">Delete</a>
-															</div>
-														</div>
-													</td>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                                    <a class="dropdown-item" href="#">Delete</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>                                                    													
 												</tr>
+                                            {% endfor %}
 
 											</tbody>
 										</table>
