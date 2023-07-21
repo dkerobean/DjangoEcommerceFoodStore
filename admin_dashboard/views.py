@@ -233,6 +233,7 @@ def delete_tag(request, id):
 
 """ USER LIST """
 
+@user_passes_test(is_staff)
 def list_users(request):
     
     all_users = User.objects.all()
@@ -244,6 +245,22 @@ def list_users(request):
     
     
     return render(request, 'admin_dashboard/users/list_users.html', context)
+
+
+@user_passes_test(is_staff)
+def deactivate_user(request, pk):
+    
+    user = User.objects.get(id=pk)
+    
+    user.is_active = False
+    user.save()
+    messages.success(request, 'User Deactivated')
+    return redirect('list-users')
+
+
+    return render(request, 'admin_dashboard/users/list_users.html')
+
+    
     
     
     

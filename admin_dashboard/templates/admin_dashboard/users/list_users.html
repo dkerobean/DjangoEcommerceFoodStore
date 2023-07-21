@@ -74,9 +74,9 @@
                                                                     <span class="sr-only">Info</span>
                                                                 </button>
 
-                                                                <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                                    <a class="dropdown-item" href="#">Delete</a>
+                                                                <div class="dropdown-menu">     
+                                                                    <p>{{ user.id }}</p>                                                              
+                                                                    <a class="dropdown-item" href="{% url 'deactivate-user' user.id %}">Deactivate</a>
                                                                 </div>
                                                             </div>
                                                         </td>                                                    													
