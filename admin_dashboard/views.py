@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+<<<<<<< HEAD
 from frontend.models import Category, Product, Tag
+=======
+>>>>>>> origin/feature/frontend
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+<<<<<<< HEAD
 from django.contrib.auth.decorators import user_passes_test
 from .forms import AddProductForm
 
@@ -14,13 +18,21 @@ def is_staff(user):
     
     
 @user_passes_test(is_staff)
+=======
+
+
+@login_required(login_url="admin-login")
+>>>>>>> origin/feature/frontend
 def admin_dashboard(request):
     
     return render(request, 'admin_dashboard/index.html')
 
 
+<<<<<<< HEAD
 """ AUTH """
 
+=======
+>>>>>>> origin/feature/frontend
 def admin_login(request):
     
     user = request.user 
@@ -65,6 +77,7 @@ def admin_logout(request):
     auth_logout(request)
     messages.success(request, 'Logged Out')
     return redirect('admin-login')
+<<<<<<< HEAD
 
 
 """ CATEGORY """
@@ -280,3 +293,5 @@ def deactivate_user(request, pk):
     
     
     
+=======
+>>>>>>> origin/feature/frontend
