@@ -140,51 +140,17 @@
                     <h2 class="title-underline2 text-center mb-2"><span>Top Products</span></h2>
                     <div class="tab tab-nav-center product-tab product-tab-type2">
                         <ul class="nav nav-tabs">
-                            <li class="nav-item">
+                            {% for category in categories %}
+                                <li class="nav-item">
                                 <a class="nav-link active" href="demo1.html#canned">
                                     <figure>
-                                        <img src="{% static 'images/elements/product_tab/nav-1.jpg' %}" width="160" height="130"
+                                        <img src="{{ category.picture.url }}" width="160" height="130"
                                             alt="Nav img" />
                                     </figure>
-                                    <div class="nav-title">Canned</div>
+                                    <div class="nav-title">{{ category.name }}</div>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="demo1.html#fruits2">
-                                    <figure>
-                                        <img src="{% static 'images/elements/product_tab/nav-2.jpg' %}" width="160" height="130"
-                                            alt="Nav img" />
-                                    </figure>
-                                    <div class="nav-title">Fruits</div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="demo1.html#coffees">
-                                    <figure>
-                                        <img src="{% static 'images/elements/product_tab/nav-3.jpg' %}" width="160" height="130"
-                                            alt="Nav img" />
-                                    </figure>
-                                    <div class="nav-title">Coffees</div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="demo1.html#meats">
-                                    <figure>
-                                        <img src="{% static 'images/elements/product_tab/nav-4.jpg' %}" width="160" height="130"
-                                            alt="Nav img" />
-                                    </figure>
-                                    <div class="nav-title">Meats</div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="demo1.html#vegetables">
-                                    <figure>
-                                        <img src="{% static 'images/elements/product_tab/nav-5.jpg' %}" width="160" height="130"
-                                            alt="Nav img" />
-                                    </figure>
-                                    <div class="nav-title">Vegetables</div>
-                                </a>
-                            </li>
+                            {% endfor %}                                                      
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="canned">

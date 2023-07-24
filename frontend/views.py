@@ -11,7 +11,8 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth import get_user_model
-import base64 
+import base64
+from .models import Category
 
 from .tokens import account_activation_token
 
@@ -127,9 +128,12 @@ def activate_user_account(request, uidb64, token):
 def index_page(request):
     
     form = get_user_registration_form()
+    categories = Category.objects.all()
+    
     
     context = {
-        'form':form
+        'form':form, 
+        'categories':categories
     }
     
     return render(request, 'frontend/ui/index.html', context)
