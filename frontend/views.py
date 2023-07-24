@@ -132,7 +132,6 @@ def index_page(request):
 
     top_products = Product.objects.filter(tag__name="top")
     
-    
     context = {
         'form':form, 
         'categories':categories,
@@ -140,6 +139,17 @@ def index_page(request):
     }
     
     return render(request, 'frontend/ui/index.html', context)
+
+
+def view_product(request, pk):
+    
+    product = Product.objects.get(id=pk)
+    
+    context = {
+        "product":product
+    }
+    
+    return render(request, 'frontend/product/view_product.html', context)
 
 
 def account_dashboard(request):

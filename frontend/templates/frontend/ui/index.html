@@ -210,11 +210,11 @@
                                                         <span class="ratings" style="width:60%"></span>
                                                         <span class="tooltiptext tooltip-top"></span>
                                                     </div>
-                                                    <a href=""
+                                                    <a href="{% url 'view-product' top.id %}"
                                                         class="rating-reviews">(12)</a>
                                                 </div>
                                                 <h5 class="product-name">
-                                                    <a href="">
+                                                    <a href="{% url 'view-product' top.id %}">
                                                         {{ top.name }}
                                                     </a>
                                                 </h5>
