@@ -12,7 +12,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth import get_user_model
 import base64
-from .models import Category
+from .models import Category, Product, Tag
 
 from .tokens import account_activation_token
 
@@ -129,11 +129,14 @@ def index_page(request):
     
     form = get_user_registration_form()
     categories = Category.objects.all()
+
+    top_products = Product.objects.filter(tag__name="top")
     
     
     context = {
         'form':form, 
-        'categories':categories
+        'categories':categories,
+        'top_products':top_products
     }
     
     return render(request, 'frontend/ui/index.html', context)
