@@ -122,7 +122,7 @@ def add_product(request):
     form = AddProductForm()
     
     if request.method == "POST":
-        form = AddProductForm(request.POST)
+        form = AddProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, "Product Added")
@@ -187,7 +187,19 @@ def edit_product(request, pk):
     }
             
     
-    return render(request, 'admin_dashboard/product/add_product.html', context)
+    return render(request, 'admin_dashboard/product/edit_product.html', context)
+
+@user_passes_test(is_staff)
+def delete_product(request, pk):
+    
+    product = Product.objects.get(id=pk)
+    
+    product.delete()
+    messages.success(request, 'Prduct Deleted Succesfully')
+    return redirect('view-products')
+    
+    
+    return render(request, 'admin_dashboard/product/view_products.html', context)
 
 
 """ TAGS """
@@ -217,7 +229,7 @@ def create_tag(request):
 
 
 @user_passes_test(is_staff)
-def delete_tag(request, id):
+def delete_tag(request, pk):
     
     tag = Tag.objects.get(id=pk)
     
