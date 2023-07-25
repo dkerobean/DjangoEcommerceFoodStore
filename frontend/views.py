@@ -12,7 +12,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth import get_user_model
 import base64
-from .models import Category, Product, Tag
+from .models import Category, Product, Tag, Review
 
 from .tokens import account_activation_token
 import random
@@ -163,6 +163,12 @@ def view_product(request, pk):
     
     # product tags
     tags = product.tag.all()
+    
+    # add review
+    # if request.method =='POST':
+    #     title = request.POST.get('title')
+    #     review = request.POST.get('review')
+    #     user_review = Review.objects.create()
         
     
     context = {
