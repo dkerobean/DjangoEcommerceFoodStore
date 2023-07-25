@@ -176,7 +176,7 @@
                                     {% for top in top_products %}
                                             <div class="product shadow-media text-center">
                                             <figure class="product-media">
-                                                <a href="">
+                                                <a href="{% url 'view-product' top.id %}">
                                                     <img src="{{ top.product_picture.url }}" alt="product" width="295"
                                                         height="369" />
                                                     <img src="{{ top.product_picture.url }}" alt="product" width="295"

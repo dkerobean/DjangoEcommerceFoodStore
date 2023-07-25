@@ -15,6 +15,7 @@ import base64
 from .models import Category, Product, Tag
 
 from .tokens import account_activation_token
+import random
 
 
 """ AUTH """
@@ -145,8 +146,22 @@ def view_product(request, pk):
     
     product = Product.objects.get(id=pk)
     
+    #get all products excluding current product
+    other_products = Product.objects.exclude(id=pk)
+    
+    # Convert the QuerySet into a list
+    other_products_list = list(other_products)
+
+    # Shuffle the list to randomize the order of products
+    random.shuffle(other_products_list)
+    
+    # Limit the number of related products to 4
+    related_products = other_products_list[:4]
+        
+    
     context = {
-        "product":product
+        "product":product,
+        "related_products" : related_products
     }
     
     return render(request, 'frontend/product/view_product.html', context)

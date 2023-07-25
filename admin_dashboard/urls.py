@@ -7,7 +7,6 @@ urlpatterns = [
     
     path('login/', views.admin_login, name="admin-login"),
     path('logout/', views.admin_logout, name="admin-logout"),
-<<<<<<< HEAD
     
     path('add_category/', views.add_category, name="add-category"),
     path('delete_category/<str:pk>/', views.delete_category, name="delete-category"),
@@ -23,6 +22,4 @@ urlpatterns = [
     
     path('all_users/', views.list_users, name="list-users"),
     path('deactivate_user/<str:pk>/', views.deactivate_user, name="deactivate-user"),
-=======
->>>>>>> origin/feature/frontend
 ]
