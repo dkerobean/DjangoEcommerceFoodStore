@@ -110,14 +110,17 @@
                                 </div>
                                 <hr class="product-divider">
                                 <div class="product-meta">
-                                    <label>CATEGORIES:</label><a href="product-simple.html#">fruit</a> , <a
-                                        href="product-simple.html#">daily needs</a><br>
+                                    <label>CATEGORIES:</label>
+                                        {% for category in categories  %}
+                                            <a href="product-simple.html#">{{ category.name }}</a>
+                                        {% endfor %}
+                                    <br>
                                     <label>sku:</label><a href="product-simple.html#">mS46891357</a><br>
-                                    <label>tag:</label><a href="product-simple.html#">organic</a> , <a
-                                        href="product-simple.html#">greenhouse</a> , <a
-                                        href="product-simple.html#">fat</a> , <a href="product-simple.html#">healthy</a>
-                                    , <a href="product-simple.html#">dairy</a> ,
-                                    <a href="product-simple.html#">vitamin</a><br>
+                                    <label>tag:</label>
+                                    {% for tag in tags %}
+                                        <a href="product-simple.html#">{{ tag.name }}</a>,
+                                    {% endfor %}
+                                    <br>
                                     <label class="social-label">share:</label>
                                     <div class="social-links">
                                         <a href="product-simple.html#" class="social-link fab fa-facebook-f"></a>

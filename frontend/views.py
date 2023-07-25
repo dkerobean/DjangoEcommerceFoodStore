@@ -157,11 +157,19 @@ def view_product(request, pk):
     
     # Limit the number of related products to 4
     related_products = other_products_list[:4]
+    
+    # product categories 
+    categories = product.category.all()
+    
+    # product tags
+    tags = product.tag.all()
         
     
     context = {
         "product":product,
-        "related_products" : related_products
+        "related_products" : related_products, 
+        "categories":categories,
+        "tags":tags
     }
     
     return render(request, 'frontend/product/view_product.html', context)
