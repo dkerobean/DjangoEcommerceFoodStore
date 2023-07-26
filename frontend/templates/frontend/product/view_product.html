@@ -151,83 +151,90 @@
                                                 <span class="avg-rating-title">Average Rating</span>
                                                 <div class="ratings-container mb-0">
                                                     <div class="ratings-full">
-                                                        <span class="ratings" style="width:100%"></span>
+                                                        <span class="ratings" style="width:70%"></span>
                                                         <span class="tooltiptext tooltip-top"></span>
                                                     </div>
                                                     <span class="rating-reviews">(12)</span>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <form action="" method="POST">
-                                            {% csrf_token %}
-                                            <div class="row">
-                                                <label for="description">Review Title:</label>
-                                                <div class="form-group col-md-12 mb-4">
-                                                    <input type="text" class="form-control" id="email" name="title" >
+                                        
+                                        {% if request.user.is_authenticated %}
+                                            <form action="" method="POST">
+                                                {% csrf_token %}
+                                                <div class="row">
+                                                    <label for="description">Your rating for this product:</label>
+                                                    <div>
+                                                        <input type="radio" name="rating" value="0" id="star5"><label for="star5">1 Star</label>
+                                                        <input type="radio" name="rating" value="25" id="star4"><label for="star4">2 Stars</label>
+                                                        <input type="radio" name="rating" value="50" id="star3"><label for="star3">3 Stars</label>
+                                                        <input type="radio" name="rating" value="75" id="star2"><label for="star2">4 Stars</label>
+                                                        <input type="radio" name="rating" value="100" id="star1"><label for="star1">5 Star</label>
+                                                    </div>
+                                                    <br>
+                                                    <label for="description">Review Title:</label>
+                                                    <div class="form-group col-md-12 mb-4">
+                                                        <input type="text" class="form-control" id="email" name="title" >
+                                                    </div>                                            
+                                                    <div class="form-group col-md-12 mb-3">
+                                                        <label for="description">Review:</label>
+                                                        <textarea class="form-control" id="description" name="review" rows="4" placeholder="Enter your review here..."></textarea>
+                                                    </div>                                                                       
                                                 </div>
-                                                
-                                                <div class="form-group col-md-12 mb-3">
-                                                    <label for="description">Review:</label>
-                                                    <textarea class="form-control" id="description" name="review" rows="4" placeholder="Enter your review here..."></textarea>
-                                                </div>                                                                       
-                                            </div>
+                                                <button type="submit" class="btn btn-primary btn-block mb-4">Submit Review</button>
+                                            </form>
+                                        {% else %}
+                                            <p> 
+                                                <a href="{% url 'user-login' %}">Login</a> in order to write a review 
+                                            </p>
 
-                                            <button type="submit" class="btn btn-primary btn-block mb-4">Sign In</button>
-                                        </form>
+                                        {% endif %}
+                                            
+                                        
                                         
                                         
                                     </div>
                                 </div>
                                 <div class="col-lg-8 comments border-no">
-                                    <ul class="comments-list">                                       
-                                        <li class="mb-1">
-                                            <div class="comment">
-                                                <figure class="comment-media">
-                                                    <a href="product-simple.html#">
-                                                        <img src="{% static 'images/products/product-single/agent/Simple2.jpg' %}"
-                                                            width="100" height="100" alt="avatar">
-                                                    </a>
-                                                </figure>
-                                                <div class="comment-body mt-2 mt-sm-0">
-                                                    <div class="comment-rating ratings-container">
-                                                        <div class="ratings-full">
-                                                            <span class="ratings" style="width:100%"></span>
-                                                            <span class="tooltiptext tooltip-top"></span>
+                                    <ul class="comments-list">
+                                        {% if reviews is None %}
+                                            <p>No reviews yet</p>
+                                        {% else %}                                                                              
+                                            {% for review in reviews  %}
+                                                <li class="mb-1">
+                                                        <div class="comment">
+                                                            <figure class="comment-media">
+                                                                <a href="product-simple.html#">
+                                                                    <img src="{% static 'images/products/product-single/agent/Simple2.jpg' %}"
+                                                                        width="100" height="100" alt="avatar">
+                                                                </a>
+                                                            </figure>
+                                                        <div class="comment-body mt-2 mt-sm-0">
+                                                            <div class="comment-rating ratings-container">
+                                                                <div class="ratings-full">
+                                                                    <span class="ratings" style="width:{{ review.rating}}%"></span>
+                                                                    <span class="tooltiptext tooltip-top"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="comment-user">
+                                                                <span class="comment-date">by <span
+                                                                        class="font-weight-semi-bold text-uppercase text-dim">{{ review.user_profile.user.username }} </span>{{ review.review_date|timesince }} ago</span>
+                                                            </div>
+                                                            <div class="comment-description">
+                                                                {{ review.review_title}}
+                                                            </div>
+                                                            <div class="comment-content">
+                                                                <p>{{ review.review_text }}</p>
+                                                            </div>                                                            
                                                         </div>
                                                     </div>
-                                                    <div class="comment-user">
-                                                        <span class="comment-date">by <span
-                                                                class="font-weight-semi-bold text-uppercase text-dim">John
-                                                                Doe</span> on August 16, 2021</span>
-                                                    </div>
-                                                    <div class="comment-description">
-                                                        Very Good!
-                                                    </div>
-                                                    <div class="comment-content">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                            sed
-                                                            do eiusmod tempor incididunt ut labore
-                                                            et dolore magna aliqua. Venenatis tellus in metus
-                                                            enenatis
-                                                            tellus in metus vulputate eu scelerisque
-                                                            felis.vulputate eu scelerisque felis.</p>
-                                                    </div>
-                                                    <div class="feeling">
-                                                        <button
-                                                            class="btn btn-link text-capitalize btn-icon-left btn-slide-up btn-infinite like">
-                                                            <i class="fa fa-thumbs-up mb-1"></i>
-                                                            Helpful (<span class="count">0</span>)
-                                                        </button>
-                                                        <button
-                                                            class="btn btn-link text-capitalize btn-icon-left btn-slide-down btn-infinite unlike">
-                                                            <i class="fa fa-thumbs-down mb-1"></i>
-                                                            Unhelpful (<span class="count">0</span>)
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
+                                                </li>
+                                            {% endfor %}
+                                        {% endif %}
+                                                    
+                                                
+                                                
+                                           
                                     </ul>
                                     <nav class="toolbox toolbox-pagination justify-content-end">
                                         <ul class="pagination">

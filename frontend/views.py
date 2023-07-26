@@ -38,7 +38,7 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         
         if user is None:
-            messages.error(request, 'Username or Passwors incorrect')
+            messages.error(request, 'Username or Password incorrect')
             return redirect('shop')
         
         login(request, user)
@@ -123,9 +123,6 @@ def activate_user_account(request, uidb64, token):
 
 
         
-
-
-
 def index_page(request):
     
     form = get_user_registration_form()
@@ -145,6 +142,9 @@ def index_page(request):
 def view_product(request, pk):
     
     product = Product.objects.get(id=pk)
+    product_id = product.id
+    
+    form = get_user_registration_form()
     
     #get all products excluding current product
     other_products = Product.objects.exclude(id=pk)
@@ -163,19 +163,39 @@ def view_product(request, pk):
     
     # product tags
     tags = product.tag.all()
-    
+       
     # add review
-    # if request.method =='POST':
-    #     title = request.POST.get('title')
-    #     review = request.POST.get('review')
-    #     user_review = Review.objects.create()
+    if request.method =='POST':
+        title = request.POST.get('title')
+        review = request.POST.get('review')
+        rating = request.POST.get('rating')
+        user = request.user
+        
+        # Check if the user has already submitted a review for this product
+        existing_review = Review.objects.filter(
+            product_id=product_id, user_profile=user.profile).exists()
+
+        if existing_review:
+            messages.error(
+                request, 'You have already submitted a review for this product.')
+            return redirect('view-product', product_id)
+        
+        user_review = Review.objects.create(review_text=review, review_title=title,
+                                            rating=rating, product=product, user_profile=user.profile)
+        user_review.save()
+        messages.success(request, 'Product rated')
+        return redirect('view-product', product_id)
+    
+    reviews = Review.objects.filter(product=product)
         
     
     context = {
         "product":product,
         "related_products" : related_products, 
         "categories":categories,
-        "tags":tags
+        "tags":tags,
+        "form":form, 
+        "reviews":reviews
     }
     
     return render(request, 'frontend/product/view_product.html', context)
