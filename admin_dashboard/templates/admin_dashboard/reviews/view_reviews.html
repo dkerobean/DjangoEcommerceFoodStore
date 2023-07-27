@@ -42,22 +42,22 @@
                                                         <td>{{ review.user_profile.user.username }}</td>
                                                         <td>
                                                             
-                                                            {% if review.rating == 0 %}
+                                                            {% if review.rating == 20 %}
                                                                 <div class="ec-t-rate">
                                                                     <i class="mdi mdi-star is-rated"></i>
                                                                 </di>
-                                                            {% elif review.rating == 25 %}
+                                                            {% elif review.rating == 40 %}
                                                                 <div class="ec-t-rate">
                                                                     <i class="mdi mdi-star is-rated"></i>
                                                                     <i class="mdi mdi-star is-rated"></i>
                                                                 </di>
-                                                            {% elif review.rating == 50 %}
+                                                            {% elif review.rating == 60 %}
                                                                 <div class="ec-t-rate">
                                                                     <i class="mdi mdi-star is-rated"></i>
                                                                     <i class="mdi mdi-star is-rated"></i>
                                                                     <i class="mdi mdi-star is-rated"></i>
                                                                 </di>
-                                                            {% elif review.rating == 75 %}
+                                                            {% elif review.rating == 80 %}
                                                                 <div class="ec-t-rate">
                                                                     <i class="mdi mdi-star is-rated"></i>
                                                                     <i class="mdi mdi-star is-rated"></i>
@@ -81,13 +81,11 @@
                                                         <td>{{ review.review_date|timesince }}</td>
                                                         <td>
                                                             <div class="btn-group mb-1">
-                                                                <button type="button"
-                                                                    class="btn btn-outline-danger">Delete</button>                                                                
-                                                                <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                                    <a class="dropdown-item" href="#">Delete</a>
-                                                                </div>
+                                                                <a href="{% url 'delete-review' review.id %}" class="btn btn-outline-danger">
+                                                                    Delete
+                                                                </a>
                                                             </div>
+
                                                         </td>
                                                     </tr>
                                                 {% endfor %}											

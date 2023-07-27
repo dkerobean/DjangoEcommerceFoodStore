@@ -151,7 +151,7 @@
                                                 <span class="avg-rating-title">Average Rating</span>
                                                 <div class="ratings-container mb-0">
                                                     <div class="ratings-full">
-                                                        <span class="ratings" style="width:70%"></span>
+                                                        <span class="ratings" style="width:40%"></span>
                                                         <span class="tooltiptext tooltip-top"></span>
                                                     </div>
                                                     <span class="rating-reviews">(12)</span>
@@ -165,10 +165,10 @@
                                                 <div class="row">
                                                     <label for="description">Your rating for this product:</label>
                                                     <div>
-                                                        <input type="radio" name="rating" value="0" id="star5"><label for="star5">1 Star</label>
-                                                        <input type="radio" name="rating" value="25" id="star4"><label for="star4">2 Stars</label>
-                                                        <input type="radio" name="rating" value="50" id="star3"><label for="star3">3 Stars</label>
-                                                        <input type="radio" name="rating" value="75" id="star2"><label for="star2">4 Stars</label>
+                                                        <input type="radio" name="rating" value="20" id="star5"><label for="star5">1 Star</label>
+                                                        <input type="radio" name="rating" value="40" id="star4"><label for="star4">2 Stars</label>
+                                                        <input type="radio" name="rating" value="70" id="star3"><label for="star3">3 Stars</label>
+                                                        <input type="radio" name="rating" value="80" id="star2"><label for="star2">4 Stars</label>
                                                         <input type="radio" name="rating" value="100" id="star1"><label for="star1">5 Star</label>
                                                     </div>
                                                     <br>
@@ -197,7 +197,7 @@
                                 </div>
                                 <div class="col-lg-8 comments border-no">
                                     <ul class="comments-list">
-                                        {% if reviews is None %}
+                                        {% if not reviews %}
                                             <p>No reviews yet</p>
                                         {% else %}                                                                              
                                             {% for review in reviews  %}

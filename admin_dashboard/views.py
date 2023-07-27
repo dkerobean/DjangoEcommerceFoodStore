@@ -275,6 +275,7 @@ def deactivate_user(request, pk):
 
 """ REVIEWS """
 
+@user_passes_test(is_staff)
 def user_review(request):
     
     all_reviews = Review.objects.all()
@@ -284,6 +285,22 @@ def user_review(request):
     }
     
     return render(request, 'admin_dashboard/reviews/view_reviews.html', context)
+
+
+@user_passes_test(is_staff)
+def delete_review(request, pk):
+    
+    review = Review.objects.get(id=pk)
+    
+    try:  
+        review.delete()
+        messages.success(request, 'Review Deleted')
+        return redirect('view-reviews')
+    except ReviewNotFound:
+        messages.error(request, 'Review not found')
+        return redirect('view-reviews')
+    
+    return render(request, 'admin_dashboard/reviews/view_reviews.html')
 
     
     
