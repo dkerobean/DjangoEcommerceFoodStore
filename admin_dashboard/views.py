@@ -272,6 +272,13 @@ def deactivate_user(request, pk):
 
     return render(request, 'admin_dashboard/users/list_users.html')
 
+
+""" REVIEWS """
+
+def user_review(request):
+    
+    return render(request, 'admin_dashboard/reviews/view_reviews.html')
+
     
     
     

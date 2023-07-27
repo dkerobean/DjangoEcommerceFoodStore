@@ -22,4 +22,6 @@ urlpatterns = [
     
     path('all_users/', views.list_users, name="list-users"),
     path('deactivate_user/<str:pk>/', views.deactivate_user, name="deactivate-user"),
+    
+    path('view_reviews/', views.user_review, name="view-reviews"),
 ]

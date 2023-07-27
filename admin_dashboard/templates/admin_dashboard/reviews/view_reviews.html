@@ -1,0 +1,79 @@
+{% extends 'layouts/admin_dashboard.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <!-- CONTENT WRAPPER -->
+        <div class="ec-content-wrapper">
+				<div class="content">
+					<div
+						class="breadcrumb-wrapper breadcrumb-wrapper-2 d-flex align-items-center justify-content-between">
+						<h1>Review</h1>
+						<p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+							<span><i class="mdi mdi-chevron-right"></i></span>Review
+						</p>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<div class="card card-default">
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="responsive-data-table" class="table" style="width:100%">
+											<thead>
+												<tr>
+													<th>Product</th>
+													<th>Name</th>
+													<th>Profile</th>
+													<th>Vendor</th>
+													<th>Ratings</th>
+													<th>Date</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+
+											<tbody>												
+												<tr>
+													<td><img class="tbl-thumb" src="{% static 'assets/img/products/p8.jpg' %}" alt="product image"/></td>
+													<td>Smart Digital Watches</td>
+													<td><img class="tbl-thumb" src="{% static 'assets/img/user/u8.jpg' %}" alt="product image"/></td>
+													<td>Giorgia Punte</td>
+													<td>
+														<div class="ec-t-rate">
+															<i class="mdi mdi-star is-rated"></i>
+															<i class="mdi mdi-star is-rated"></i>
+															<i class="mdi mdi-star is-rated"></i>
+															<i class="mdi mdi-star is-rated"></i>
+															<i class="mdi mdi-star is-rated"></i>
+														</div>
+													</td>
+													<td>2021-11-02</td>
+													<td>
+														<div class="btn-group mb-1">
+															<button type="button"
+																class="btn btn-outline-success">Info</button>
+															<button type="button"
+																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+																data-bs-toggle="dropdown" aria-haspopup="true"
+																aria-expanded="false" data-display="static">
+																<span class="sr-only">Info</span>
+															</button>
+
+															<div class="dropdown-menu">
+																<a class="dropdown-item" href="#">Edit</a>
+																<a class="dropdown-item" href="#">Delete</a>
+															</div>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> <!-- End Content -->
+        </div> <!-- End Content Wrapper -->
+
+{% endblock content %}
