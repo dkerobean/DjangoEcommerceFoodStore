@@ -27,45 +27,71 @@
 													<th>Profile</th>
 													<th>Vendor</th>
 													<th>Ratings</th>
+                                                    <th>Review Text</th>
 													<th>Date</th>
 													<th>Action</th>
 												</tr>
 											</thead>
 
-											<tbody>												
-												<tr>
-													<td><img class="tbl-thumb" src="{% static 'assets/img/products/p8.jpg' %}" alt="product image"/></td>
-													<td>Smart Digital Watches</td>
-													<td><img class="tbl-thumb" src="{% static 'assets/img/user/u8.jpg' %}" alt="product image"/></td>
-													<td>Giorgia Punte</td>
-													<td>
-														<div class="ec-t-rate">
-															<i class="mdi mdi-star is-rated"></i>
-															<i class="mdi mdi-star is-rated"></i>
-															<i class="mdi mdi-star is-rated"></i>
-															<i class="mdi mdi-star is-rated"></i>
-															<i class="mdi mdi-star is-rated"></i>
-														</div>
-													</td>
-													<td>2021-11-02</td>
-													<td>
-														<div class="btn-group mb-1">
-															<button type="button"
-																class="btn btn-outline-success">Info</button>
-															<button type="button"
-																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-																data-bs-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false" data-display="static">
-																<span class="sr-only">Info</span>
-															</button>
-
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">Edit</a>
-																<a class="dropdown-item" href="#">Delete</a>
-															</div>
-														</div>
-													</td>
-												</tr>
+											<tbody>	
+                                                {% for review in all_reviews  %}
+                                                    <tr>
+                                                        <td><img class="tbl-thumb" src="{{ review.product.product_picture.url }}" alt="product image"/></td>
+                                                        <td>{{ review.product.name }}</td>
+                                                        <td><img class="tbl-thumb" src="{% static 'assets/img/user/avatar.svg' %}" alt="product image"/></td>
+                                                        <td>{{ review.user_profile.user.username }}</td>
+                                                        <td>
+                                                            
+                                                            {% if review.rating == 0 %}
+                                                                <div class="ec-t-rate">
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                </di>
+                                                            {% elif review.rating == 25 %}
+                                                                <div class="ec-t-rate">
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                </di>
+                                                            {% elif review.rating == 50 %}
+                                                                <div class="ec-t-rate">
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                </di>
+                                                            {% elif review.rating == 75 %}
+                                                                <div class="ec-t-rate">
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                </di>
+                                                            {% elif review.rating == 100 %}
+                                                                <div class="ec-t-rate">
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                    <i class="mdi mdi-star is-rated"></i>
+                                                                </di>
+                                                            {% else %}
+                                                                <p>No review left</p>
+                                                            {% endif %}
+                                                                                                                           
+                                                        </td>
+                                                        <td>{{ review.review_text|truncatechars:50 }}</td>
+                                                        <td>{{ review.review_date|timesince }}</td>
+                                                        <td>
+                                                            <div class="btn-group mb-1">
+                                                                <button type="button"
+                                                                    class="btn btn-outline-danger">Delete</button>                                                                
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                                    <a class="dropdown-item" href="#">Delete</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}											
+												
 											</tbody>
 										</table>
 									</div>
