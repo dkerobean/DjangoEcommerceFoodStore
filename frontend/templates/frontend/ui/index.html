@@ -140,51 +140,17 @@
                     <h2 class="title-underline2 text-center mb-2"><span>Top Products</span></h2>
                     <div class="tab tab-nav-center product-tab product-tab-type2">
                         <ul class="nav nav-tabs">
-                            <li class="nav-item">
+                            {% for category in categories %}
+                                <li class="nav-item">
                                 <a class="nav-link active" href="demo1.html#canned">
                                     <figure>
-                                        <img src="{% static 'images/elements/product_tab/nav-1.jpg' %}" width="160" height="130"
+                                        <img src="{{ category.picture.url }}" width="160" height="130"
                                             alt="Nav img" />
                                     </figure>
-                                    <div class="nav-title">Canned</div>
+                                    <div class="nav-title">{{ category.name }}</div>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="demo1.html#fruits2">
-                                    <figure>
-                                        <img src="{% static 'images/elements/product_tab/nav-2.jpg' %}" width="160" height="130"
-                                            alt="Nav img" />
-                                    </figure>
-                                    <div class="nav-title">Fruits</div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="demo1.html#coffees">
-                                    <figure>
-                                        <img src="{% static 'images/elements/product_tab/nav-3.jpg' %}" width="160" height="130"
-                                            alt="Nav img" />
-                                    </figure>
-                                    <div class="nav-title">Coffees</div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="demo1.html#meats">
-                                    <figure>
-                                        <img src="{% static 'images/elements/product_tab/nav-4.jpg' %}" width="160" height="130"
-                                            alt="Nav img" />
-                                    </figure>
-                                    <div class="nav-title">Meats</div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="demo1.html#vegetables">
-                                    <figure>
-                                        <img src="{% static 'images/elements/product_tab/nav-5.jpg' %}" width="160" height="130"
-                                            alt="Nav img" />
-                                    </figure>
-                                    <div class="nav-title">Vegetables</div>
-                                </a>
-                            </li>
+                            {% endfor %}                                                      
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="canned">
@@ -206,203 +172,64 @@
                                                 }
                                             }
                                         }">
-                                    <div class="product shadow-media text-center">
-                                        <figure class="product-media">
-                                            <a href="https://d-themes.com/html/panda/product-simple.html">
-                                                <img src="{% static 'images/products/5-295x369.jpg' %}" alt="product" width="295"
-                                                    height="369" />
-                                                <img src="{% static 'images/products/5-2-295x369.jpg' %}" alt="product" width="295"
-                                                    height="369" />
-                                            </a>
-                                            <div class="product-label-group">
-                                                <label class="product-label label-sale">-40%</label>
-                                            </div>
-                                            <div class="product-action-vertical">
-                                                <a href="demo1.html#" class="btn-product-icon btn-cart"
-                                                    data-toggle="modal" data-target="#addCartModal" title="Add to Cart">
-                                                    <i class="p-icon-cart-solid"></i>
-                                                </a>
-                                                <a href="demo1.html#" class="btn-product-icon btn-wishlist"
-                                                    title="Add to Wishlist">
-                                                    <i class="p-icon-heart-solid"></i>
-                                                </a>
-                                                <a href="demo1.html#" class="btn-product-icon btn-compare"
-                                                    title="Compare">
-                                                    <i class="p-icon-compare-solid"></i>
-                                                </a>
-                                                <a href="demo1.html#" class="btn-product-icon btn-quickview"
-                                                    title="Quick View">
-                                                    <i class="p-icon-search-solid"></i>
-                                                </a>
-                                            </div>
-                                        </figure>
-                                        <div class="product-details">
-                                            <div class="ratings-container">
-                                                <div class="ratings-full">
-                                                    <span class="ratings" style="width:60%"></span>
-                                                    <span class="tooltiptext tooltip-top"></span>
-                                                </div>
-                                                <a href="https://d-themes.com/html/panda/product-simple.html#content-reviews"
-                                                    class="rating-reviews">(12)</a>
-                                            </div>
-                                            <h5 class="product-name">
-                                                <a href="https://d-themes.com/html/panda/product-simple.html">
-                                                    Peanuts
-                                                </a>
-                                            </h5>
-                                            <span class="product-price">
-                                                <del class="old-price">$28.00</del>
-                                                <ins class="new-price">$12.00</ins>
-                                            </span>
-                                        </div>
-                                    </div>
 
-                                    <div class="product shadow-media text-center">
-                                        <figure class="product-media">
-                                            <a href="https://d-themes.com/html/panda/product-simple.html">
-                                                <img src="{% static 'images/products/6-295x369.jpg' %}" alt="product" width="295"
-                                                    height="369" />
-                                            </a>
-                                            <div class="product-label-group">
-                                                <label class="product-label label-new">New</label>
-                                                <label class="product-label label-sale">-38%</label>
-                                            </div>
-                                            <div class="product-action-vertical">
-                                                <a href="demo1.html#" class="btn-product-icon btn-cart"
-                                                    data-toggle="modal" data-target="#addCartModal" title="Add to Cart">
-                                                    <i class="p-icon-cart-solid"></i>
+                                    {% for top in top_products %}
+                                            <div class="product shadow-media text-center">
+                                            <figure class="product-media">
+                                                <a href="{% url 'view-product' top.id %}">
+                                                    <img src="{{ top.product_picture.url }}" alt="product" width="295"
+                                                        height="369" />
+                                                    <img src="{{ top.product_picture.url }}" alt="product" width="295"
+                                                        height="369" />
                                                 </a>
-                                                <a href="demo1.html#" class="btn-product-icon btn-wishlist"
-                                                    title="Add to Wishlist">
-                                                    <i class="p-icon-heart-solid"></i>
-                                                </a>
-                                                <a href="demo1.html#" class="btn-product-icon btn-compare"
-                                                    title="Compare">
-                                                    <i class="p-icon-compare-solid"></i>
-                                                </a>
-                                                <a href="demo1.html#" class="btn-product-icon btn-quickview"
-                                                    title="Quick View">
-                                                    <i class="p-icon-search-solid"></i>
-                                                </a>
-                                            </div>
-                                        </figure>
-                                        <div class="product-details">
-                                            <div class="ratings-container">
-                                                <div class="ratings-full">
-                                                    <span class="ratings" style="width:80%"></span>
-                                                    <span class="tooltiptext tooltip-top"></span>
+                                                <div class="product-label-group">
+                                                    <label class="product-label label-sale">-40%</label>
                                                 </div>
-                                                <a href="https://d-themes.com/html/panda/product-simple.html#content-reviews"
-                                                    class="rating-reviews">(12)</a>
-                                            </div>
-                                            <h5 class="product-name">
-                                                <a href="https://d-themes.com/html/panda/product-simple.html">
-                                                    Greenhouse Peas
-                                                </a>
-                                            </h5>
-                                            <span class="product-price">
-                                                <del class="old-price">$90.00</del>
-                                                <ins class="new-price">$36.00</ins>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="product shadow-media text-center">
-                                        <figure class="product-media">
-                                            <a href="https://d-themes.com/html/panda/product-simple.html">
-                                                <img src="{% static 'images/products/7-295x369.jpg' %}" alt="product" width="295"
-                                                    height="369" />
-                                                <img src="{% static 'images/products/7-2-295x369.jpg' %}" alt="product" width="295"
-                                                    height="369" />
-                                            </a>
-                                            <div class="product-label-group">
-                                                <label class="product-label label-sale">-24%</label>
-                                            </div>
-                                            <div class="product-action-vertical">
-                                                <a href="demo1.html#" class="btn-product-icon btn-cart"
-                                                    data-toggle="modal" data-target="#addCartModal" title="Add to Cart">
-                                                    <i class="p-icon-cart-solid"></i>
-                                                </a>
-                                                <a href="demo1.html#" class="btn-product-icon btn-wishlist"
-                                                    title="Add to Wishlist">
-                                                    <i class="p-icon-heart-solid"></i>
-                                                </a>
-                                                <a href="demo1.html#" class="btn-product-icon btn-compare"
-                                                    title="Compare">
-                                                    <i class="p-icon-compare-solid"></i>
-                                                </a>
-                                                <a href="demo1.html#" class="btn-product-icon btn-quickview"
-                                                    title="Quick View">
-                                                    <i class="p-icon-search-solid"></i>
-                                                </a>
-                                            </div>
-                                        </figure>
-                                        <div class="product-details">
-                                            <div class="ratings-container">
-                                                <div class="ratings-full">
-                                                    <span class="ratings" style="width:100%"></span>
-                                                    <span class="tooltiptext tooltip-top"></span>
+                                                <div class="product-action-vertical">
+                                                    <a href="demo1.html#" class="btn-product-icon btn-cart"
+                                                        data-toggle="modal" data-target="#addCartModal" title="Add to Cart">
+                                                        <i class="p-icon-cart-solid"></i>
+                                                    </a>
+                                                    <a href="demo1.html#" class="btn-product-icon btn-wishlist"
+                                                        title="Add to Wishlist">
+                                                        <i class="p-icon-heart-solid"></i>
+                                                    </a>
+                                                    <a href="demo1.html#" class="btn-product-icon btn-compare"
+                                                        title="Compare">
+                                                        <i class="p-icon-compare-solid"></i>
+                                                    </a>
+                                                    <a href="demo1.html#" class="btn-product-icon btn-quickview"
+                                                        title="Quick View">
+                                                        <i class="p-icon-search-solid"></i>
+                                                    </a>
                                                 </div>
-                                                <a href="https://d-themes.com/html/panda/product-simple.html#content-reviews"
-                                                    class="rating-reviews">(12)</a>
-                                            </div>
-                                            <h5 class="product-name">
-                                                <a href="https://d-themes.com/html/panda/product-simple.html">
-                                                    Salted Caramel
-                                                </a>
-                                            </h5>
-                                            <span class="product-price">
-                                                <del class="old-price">$22.00</del>
-                                                <ins class="new-price">$16.00</ins>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="product shadow-media text-center">
-                                        <figure class="product-media">
-                                            <a href="https://d-themes.com/html/panda/product-simple.html">
-                                                <img src="{% static 'images/products/8-295x369.jpg' %}" alt="product" width="295"
-                                                    height="369" />
-                                            </a>
-                                            <div class="product-action-vertical">
-                                                <a href="demo1.html#" class="btn-product-icon btn-cart"
-                                                    data-toggle="modal" data-target="#addCartModal" title="Add to Cart">
-                                                    <i class="p-icon-cart-solid"></i>
-                                                </a>
-                                                <a href="demo1.html#" class="btn-product-icon btn-wishlist"
-                                                    title="Add to Wishlist">
-                                                    <i class="p-icon-heart-solid"></i>
-                                                </a>
-                                                <a href="demo1.html#" class="btn-product-icon btn-compare"
-                                                    title="Compare">
-                                                    <i class="p-icon-compare-solid"></i>
-                                                </a>
-                                                <a href="demo1.html#" class="btn-product-icon btn-quickview"
-                                                    title="Quick View">
-                                                    <i class="p-icon-search-solid"></i>
-                                                </a>
-                                            </div>
-                                        </figure>
-                                        <div class="product-details">
-                                            <div class="ratings-container">
-                                                <div class="ratings-full">
-                                                    <span class="ratings" style="width:60%"></span>
-                                                    <span class="tooltiptext tooltip-top"></span>
+                                            </figure>
+                                            <div class="product-details">
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width:60%"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="{% url 'view-product' top.id %}"
+                                                        class="rating-reviews">(12)</a>
                                                 </div>
-                                                <a href="https://d-themes.com/html/panda/product-simple.html#content-reviews"
-                                                    class="rating-reviews">(12)</a>
+                                                <h5 class="product-name">
+                                                    <a href="{% url 'view-product' top.id %}">
+                                                        {{ top.name }}
+                                                    </a>
+                                                </h5>
+                                                <span class="product-price">
+                                                    {% if not top.sale_price %}
+                                                        <ins class="new-price">${{ top.price }}</ins>                                                        
+                                                    {% else %}
+                                                        <del class="old-price">${{ top.price }}</del>
+                                                        <ins class="new-price">${{ top.sale_price }}</ins>
+                                                    {% endif %}                                                    
+                                                </span>
                                             </div>
-                                            <h5 class="product-name">
-                                                <a href="https://d-themes.com/html/panda/product-simple.html">
-                                                    Broccoli
-                                                </a>
-                                            </h5>
-                                            <span class="product-price">
-                                                <span class="price">$42.00</span>
-                                            </span>
-                                        </div>
-                                    </div>
-
+                                        </div>  
+                                    {% endfor %}
+                                                                      
                                 </div>
                             </div>
                             <div class="tab-pane" id="fruits2">

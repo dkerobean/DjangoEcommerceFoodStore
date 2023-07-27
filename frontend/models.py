@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 import uuid 
 from .utils import generate_order_id
+from django.core.validators import MaxValueValidator
 
 
 class UserProfile(models.Model):
@@ -69,7 +70,19 @@ class Product(models.Model):
         return self.name 
     
 
+class Review(models.Model):
+    user_profile = models.ForeignKey(
+        UserProfile, on_delete=models.CASCADE, related_name='reviews')
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='reviews')
+    review_text = models.TextField()
+    review_title = models.CharField(max_length=50, blank=True, null=True)
+    rating = models.PositiveIntegerField(default=5, validators=[MaxValueValidator(5)])
+    review_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"Review for {self.product.name} by {self.user_profile.user.username}"
+    
 class Order(models.Model):
     
     ORDER_STATUS_CHOICES = [
