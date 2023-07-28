@@ -16,6 +16,10 @@ from .models import Category, Product, Tag, Review
 
 from .tokens import account_activation_token
 import random
+from django.db.models import Avg
+
+
+
 
 
 """ AUTH """
@@ -186,7 +190,15 @@ def view_product(request, pk):
         messages.success(request, 'Product rated')
         return redirect('view-product', product_id)
     
+    
     reviews = Review.objects.filter(product=product)
+    
+    # Calculate the average rating for the product
+    avg_rating = reviews.aggregate(average_rating=Avg('rating'))[
+        'average_rating']
+    
+    
+
         
     
     context = {
@@ -195,7 +207,9 @@ def view_product(request, pk):
         "categories":categories,
         "tags":tags,
         "form":form, 
-        "reviews":reviews
+        "reviews":reviews, 
+        "average_rating": round(avg_rating, 2) / 20 if avg_rating else 0.0,
+        "avg_rating":avg_rating
     }
     
     return render(request, 'frontend/product/view_product.html', context)

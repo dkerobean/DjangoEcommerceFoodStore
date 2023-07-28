@@ -53,11 +53,11 @@
                                 <h1 class="product-name">{{ product.name }}</h1>
                                 <div class="ratings-container">
                                     <div class="ratings-full">
-                                        <span class="ratings" style="width:60%"></span>
+                                        <span class="ratings" style="width:{{avg_rating}}%"></span>                                        
                                         <span class="tooltiptext tooltip-top"></span>
                                     </div>
                                     <a href="product-simple.html#content-reviews" class="link-to-tab rating-reviews">(
-                                        12 Customer
+                                        {{ reviews.count }} Customer
                                         Reviews )</a>
                                 </div>
                                 <p class="product-price mb-1">
@@ -139,14 +139,13 @@
                                     <span>
                                         Customer Reviews
                                     </span>
-                                </h2>
-                                
+                                </h2>                               
                             </div>
                             <div class="row pb-10">
                                 <div class="col-lg-4 mb-4 sticky-sidebar-wrapper">
                                     <div class="sticky-sidebar pb-3" data-sticky-options="{'paddingOffsetTop': 90}">
                                         <div class="avg-rating-container">
-                                            <mark>4.5</mark>
+                                            <mark>{{ average_rating }}</mark>
                                             <div class="avg-rating">
                                                 <span class="avg-rating-title">Average Rating</span>
                                                 <div class="ratings-container mb-0">
@@ -154,7 +153,8 @@
                                                         <span class="ratings" style="width:40%"></span>
                                                         <span class="tooltiptext tooltip-top"></span>
                                                     </div>
-                                                    <span class="rating-reviews">(12)</span>
+                                                    <p>{{ avg_rating }}</p>
+                                                    <span class="rating-reviews">({{ reviews.count }})</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -189,10 +189,7 @@
                                             </p>
 
                                         {% endif %}
-                                            
-                                        
-                                        
-                                        
+                                                                              
                                     </div>
                                 </div>
                                 <div class="col-lg-8 comments border-no">
@@ -230,11 +227,7 @@
                                                     </div>
                                                 </li>
                                             {% endfor %}
-                                        {% endif %}
-                                                    
-                                                
-                                                
-                                           
+                                        {% endif %}                                          
                                     </ul>
                                     <nav class="toolbox toolbox-pagination justify-content-end">
                                         <ul class="pagination">
