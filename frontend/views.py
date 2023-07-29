@@ -134,10 +134,14 @@ def index_page(request):
 
     top_products = Product.objects.filter(tag__name="top")
     
+    
+    
     context = {
         'form':form, 
         'categories':categories,
-        'top_products':top_products
+        'top_products':top_products,
+        'avg_ratings': avg_ratings,
+        
     }
     
     return render(request, 'frontend/ui/index.html', context)
