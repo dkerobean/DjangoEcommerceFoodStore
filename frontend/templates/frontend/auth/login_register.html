@@ -24,19 +24,20 @@
                             <div class="tab tab-nav-underline tab-nav-boxed">
                                 <ul class="nav nav-tabs nav-fill align-items-center justify-content-center mb-4">
                                     <li class="nav-item">
-                                        <a class="nav-link active lh-1 ls-normal" href="login.html#signin-1">Login</a>
+                                        <a class="nav-link active lh-1 ls-normal" href="#signin-1">Login</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="login.html#register-1" class="nav-link lh-1 ls-normal">Register</a>
+                                        <a href="#register-1" class="nav-link lh-1 ls-normal">Register</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="signin-1">
-                                        <form action="login.html#">
+                                        <form action="{% url 'user-login' %}" method="POST">
+                                            {% csrf_token %}
                                             <div class="form-group">
-                                                <input type="text" id="singin-email-1" name="singin-email-1"
+                                                <input type="text" id="singin-email-1" name="username"
                                                     placeholder="Username or Email Address" required>
-                                                <input type="password" id="singin-password" name="singin-password-1"
+                                                <input type="password" id="singin-password" name="passowrd"
                                                     placeholder="Password" required>
                                             </div>
                                             <div class="form-footer">
@@ -46,32 +47,37 @@
                                                     <label for="signin-remember-1">Remember
                                                         me</label>
                                                 </div>
-                                                <a href="login.html#" class="lost-link d-block ">Lost your password?</a>
+                                                <a href="#" class="lost-link d-block ">Lost your password?</a>
                                             </div>
-                                            <button class="btn btn-dark btn-block" type="submit">Login</button>
+                                            <button class="btn btn-dark btn-block"
+                                                            type="submit">Login</button>
                                         </form>
                                     </div>
                                     <div class="tab-pane" id="register-1">
-                                        <form action="login.html#">
+                                        <form action="{% url 'register' %}" method="POST">
+                                            {% csrf_token %}
                                             <div class="form-group">
-                                                <input type="text" id="register-user-1" name="register-user-1"
-                                                    placeholder="Username" required>
-                                                <input type="email" id="register-email-1" name="register-email-1"
-                                                    placeholder="Your Email Address" required>
-                                                <input type="password" id="register-password-1"
-                                                    name="register-password-1" placeholder="Password" required>
+                                                {% for field in form %}
+                                                    {{field }}
+
+                                                    {% for error in field.errors  %}
+                                                        <p style="color:red;">{{error}}</p>
+                                                    {% endfor %}
+
+                                                {% endfor %}
+                                                                                                            
                                             </div>
                                             <div class="form-footer mb-5">
                                                 <div class="form-checkbox">
-                                                    <input type="checkbox" id="register-agree-1" name="register-agree-1"
-                                                        required>
-                                                    <label for="register-agree-1">I
+                                                    <input type="checkbox" id="register-agree"
+                                                        name="register-agree" required>
+                                                    <label for="register-agree">I
                                                         agree to the
                                                         privacy policy</label>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-dark btn-block" type="submit">Register</button>
-                                        </form>
+                                            <button class="btn btn-dark btn-block"
+                                                type="submit">Register</button>
                                     </div>
                                 </div>
                             </div>

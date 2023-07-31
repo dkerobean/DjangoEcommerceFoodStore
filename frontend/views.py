@@ -43,14 +43,15 @@ def user_login(request):
         
         if user is None:
             messages.error(request, 'Username or Password incorrect')
-            return redirect('shop')
+            return redirect('login-register')
         
         login(request, user)
         messages.success(request, 'Logged in')
-        return redirect('contact')
+        return redirect('user-dashboard')
         
          
     return render(request, 'frontend/ui/index.html')
+
 
 def user_logout(request):
     
@@ -58,11 +59,23 @@ def user_logout(request):
     messages.success(request, 'Logged Out')
     return redirect('index')
 
-    return render(request, 'frontend/ui/index.html')
+    return render(request, 'frontend/ui/index.html')\
+                    
 
 
 def get_user_registration_form():
     return UserRegistrationForm()
+
+
+def login_register(request):
+    
+    form = UserRegistrationForm()
+    
+    context = {
+        "form" : form
+    }
+    
+    return render(request, 'frontend/auth/login_register.html', context)
 
 
 def user_register(request):
