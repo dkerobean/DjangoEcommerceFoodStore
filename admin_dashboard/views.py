@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from .forms import AddProductForm
 
+
 # check if user is Admin
 def is_staff(user):
     return user.is_staff and user.is_authenticated
