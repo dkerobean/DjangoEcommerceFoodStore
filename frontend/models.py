@@ -79,6 +79,8 @@ class Review(models.Model):
     review_title = models.CharField(max_length=50, blank=True, null=True)
     rating = models.PositiveIntegerField(default=5, validators=[MaxValueValidator(5)])
     review_date = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
 
     def __str__(self):
         return f"Review for {self.product.name} by {self.user_profile.user.username}"

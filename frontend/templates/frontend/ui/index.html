@@ -211,7 +211,7 @@
                                                         <span class="tooltiptext tooltip-top"></span>
                                                     </div>
                                                     <a href="{% url 'view-product' top.id %}"
-                                                        class="rating-reviews">(12)</a>
+                                                        class="rating-reviews">({{ avg_ratings }})</a>
                                                 </div>
                                                 <h5 class="product-name">
                                                     <a href="{% url 'view-product' top.id %}">

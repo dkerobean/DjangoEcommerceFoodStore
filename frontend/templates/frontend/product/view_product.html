@@ -53,11 +53,11 @@
                                 <h1 class="product-name">{{ product.name }}</h1>
                                 <div class="ratings-container">
                                     <div class="ratings-full">
-                                        <span class="ratings" style="width:60%"></span>
+                                        <span class="ratings" style="width:{{avg_rating}}%"></span>                                        
                                         <span class="tooltiptext tooltip-top"></span>
                                     </div>
                                     <a href="product-simple.html#content-reviews" class="link-to-tab rating-reviews">(
-                                        12 Customer
+                                        {{ reviews.count }} Customer
                                         Reviews )</a>
                                 </div>
                                 <p class="product-price mb-1">
@@ -139,22 +139,21 @@
                                     <span>
                                         Customer Reviews
                                     </span>
-                                </h2>
-                                
+                                </h2>                               
                             </div>
                             <div class="row pb-10">
                                 <div class="col-lg-4 mb-4 sticky-sidebar-wrapper">
                                     <div class="sticky-sidebar pb-3" data-sticky-options="{'paddingOffsetTop': 90}">
                                         <div class="avg-rating-container">
-                                            <mark>4.5</mark>
+                                            <mark>{{ average_rating }}</mark>
                                             <div class="avg-rating">
                                                 <span class="avg-rating-title">Average Rating</span>
                                                 <div class="ratings-container mb-0">
                                                     <div class="ratings-full">
-                                                        <span class="ratings" style="width:70%"></span>
+                                                        <span class="ratings" style="width:{{ avg_rating }}%"></span>
                                                         <span class="tooltiptext tooltip-top"></span>
-                                                    </div>
-                                                    <span class="rating-reviews">(12)</span>
+                                                    </div>                                                   
+                                                    <span class="rating-reviews">({{ reviews.count }})</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -165,10 +164,10 @@
                                                 <div class="row">
                                                     <label for="description">Your rating for this product:</label>
                                                     <div>
-                                                        <input type="radio" name="rating" value="0" id="star5"><label for="star5">1 Star</label>
-                                                        <input type="radio" name="rating" value="25" id="star4"><label for="star4">2 Stars</label>
-                                                        <input type="radio" name="rating" value="50" id="star3"><label for="star3">3 Stars</label>
-                                                        <input type="radio" name="rating" value="75" id="star2"><label for="star2">4 Stars</label>
+                                                        <input type="radio" name="rating" value="20" id="star5"><label for="star5">1 Star</label>
+                                                        <input type="radio" name="rating" value="40" id="star4"><label for="star4">2 Stars</label>
+                                                        <input type="radio" name="rating" value="70" id="star3"><label for="star3">3 Stars</label>
+                                                        <input type="radio" name="rating" value="80" id="star2"><label for="star2">4 Stars</label>
                                                         <input type="radio" name="rating" value="100" id="star1"><label for="star1">5 Star</label>
                                                     </div>
                                                     <br>
@@ -189,15 +188,12 @@
                                             </p>
 
                                         {% endif %}
-                                            
-                                        
-                                        
-                                        
+                                                                              
                                     </div>
                                 </div>
                                 <div class="col-lg-8 comments border-no">
                                     <ul class="comments-list">
-                                        {% if reviews is None %}
+                                        {% if not reviews %}
                                             <p>No reviews yet</p>
                                         {% else %}                                                                              
                                             {% for review in reviews  %}
@@ -230,11 +226,7 @@
                                                     </div>
                                                 </li>
                                             {% endfor %}
-                                        {% endif %}
-                                                    
-                                                
-                                                
-                                           
+                                        {% endif %}                                          
                                     </ul>
                                     <nav class="toolbox toolbox-pagination justify-content-end">
                                         <ul class="pagination">

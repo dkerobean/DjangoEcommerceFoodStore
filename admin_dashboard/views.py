@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from frontend.models import Category, Product, Tag
+from frontend.models import Category, Product, Tag, Review
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
@@ -271,6 +271,36 @@ def deactivate_user(request, pk):
 
 
     return render(request, 'admin_dashboard/users/list_users.html')
+
+
+""" REVIEWS """
+
+@user_passes_test(is_staff)
+def user_review(request):
+    
+    all_reviews = Review.objects.all()
+    
+    context = {
+        "all_reviews": all_reviews
+    }
+    
+    return render(request, 'admin_dashboard/reviews/view_reviews.html', context)
+
+
+@user_passes_test(is_staff)
+def delete_review(request, pk):
+    
+    review = Review.objects.get(id=pk)
+    
+    try:  
+        review.delete()
+        messages.success(request, 'Review Deleted')
+        return redirect('view-reviews')
+    except ReviewNotFound:
+        messages.error(request, 'Review not found')
+        return redirect('view-reviews')
+    
+    return render(request, 'admin_dashboard/reviews/view_reviews.html')
 
     
     
