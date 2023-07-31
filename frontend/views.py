@@ -140,8 +140,6 @@ def index_page(request):
         'form':form, 
         'categories':categories,
         'top_products':top_products,
-        'avg_ratings': avg_ratings,
-        
     }
     
     return render(request, 'frontend/ui/index.html', context)
