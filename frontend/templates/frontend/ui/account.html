@@ -11,7 +11,7 @@
             <nav class="breadcrumb-nav has-border">
                 <div class="container">
                     <ul class="breadcrumb">
-                        <li><a href="https://d-themes.com/html/panda/demo1.html">Home</a></li>
+                        <li><a href="#">Home</a></li>
                         <li>My account</li>
                     </ul>
                 </div>
@@ -37,7 +37,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link no-tab-item"
-                                    href="https://d-themes.com/html/panda/wishlist.html">Wishlist</a>
+                                    href="">Wishlist</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link no-tab-item"
@@ -47,9 +47,9 @@
                         <div class="tab-content col-lg-9 col-md-8">
                             <div class="tab-pane active" id="dashboard">
                                 <p class="mb-0">
-                                    Hello <span class="font-weight-bold text-secondary">John Doe</span> (not <span
-                                        class="font-weight-bold text-secondary">John Doe</span>? <a
-                                        href="https://d-themes.com/html/panda/login.html" class="text-primary">Log
+                                    Hello <span class="font-weight-bold text-secondary">{{ request.user.username }}</span> (not <span
+                                        class="font-weight-bold text-secondary">{{ request.user.username }}</span>? <a
+                                        href="{% url 'user-logout' %}" class="text-primary">Log
                                         out</a>)
                                 </p>
                                 <p class>
