@@ -45,6 +45,7 @@ class Category(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
+    product = models.ManyToManyField("Product")
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
     

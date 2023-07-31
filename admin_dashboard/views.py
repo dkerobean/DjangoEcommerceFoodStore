@@ -1,11 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+<<<<<<< HEAD
 from frontend.models import Category, Product, Tag
+=======
+from frontend.models import Category, Product
+>>>>>>> 37f0bed (product add done)
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+<<<<<<< HEAD
 from django.contrib.auth.decorators import user_passes_test
+=======
+>>>>>>> 37f0bed (product add done)
 from .forms import AddProductForm
 
 # check if user is Admin

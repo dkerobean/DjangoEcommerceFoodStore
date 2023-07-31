@@ -25,4 +25,6 @@ urlpatterns = [
     path('deactivate_user/<str:pk>/', views.deactivate_user, name="deactivate-user"),
 
     path('delete_category/<str:pk>/', views.delete_category, name="delete-category"),
+    
+    path('add_product/', views.add_product, name="add-product"), 
 ]
