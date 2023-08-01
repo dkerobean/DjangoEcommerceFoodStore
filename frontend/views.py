@@ -146,6 +146,8 @@ def index_page(request):
     categories = Category.objects.all()
 
     top_products = Product.objects.filter(tag__name="top")
+    new_arrivals = Product.objects.filter(tag__name="New arrivals")
+    featured_products = Product.objects.filter(tag__name="featured")
     
     
     
@@ -153,6 +155,8 @@ def index_page(request):
         'form':form, 
         'categories':categories,
         'top_products':top_products,
+        'new_arrivals':new_arrivals, 
+        "featured":featured_products
     }
     
     return render(request, 'frontend/ui/index.html', context)
@@ -212,10 +216,7 @@ def view_product(request, pk):
     avg_rating = reviews.aggregate(average_rating=Avg('rating'))[
         'average_rating']
     
-    
 
-        
-    
     context = {
         "product":product,
         "related_products" : related_products, 

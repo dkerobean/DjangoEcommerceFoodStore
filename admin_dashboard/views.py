@@ -174,7 +174,7 @@ def edit_product(request, pk):
     form = AddProductForm(instance=product)
     
     if request.method == "POST":
-        form = AddProductForm(request.POST, instance=product)
+        form = AddProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
             messages.success(request, 'Prduct Edited Succesfully')
