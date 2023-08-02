@@ -20,8 +20,6 @@ from django.db.models import Avg
 
 
 
-
-
 """ AUTH """
 
 def user_login(request):
@@ -239,8 +237,17 @@ def account_dashboard(request):
 
 
 def shop_page(request):
+    
+    categories = Category.objects.all()
+    products = Product.objects.all()
 
-    return render(request, 'frontend/ui/shop.html')
+    context = {
+        "categories":categories,
+        "products":products
+    }    
+    
+
+    return render(request, 'frontend/ui/shop.html', context)
 
 
 def about_page(request):
