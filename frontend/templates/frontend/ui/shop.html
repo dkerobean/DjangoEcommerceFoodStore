@@ -232,12 +232,13 @@
                                                         <span class="tooltiptext tooltip-top"></span>
                                                     </div>
                                                     <a href="#"
-                                                        class="rating-reviews">(12)</a>
+                                                        class="rating-reviews">({{ product.product_reviews.count }})</a>
                                                 </div>
                                                 <h5 class="product-name">
                                                     <a href="">
-                                                        {{ product.name }}
+                                                        {{ product.name }}                                                     
                                                     </a>
+                                                     <p>q{{average_ratings}}</p>                                                   
                                                 </h5>
                                                 <span class="product-price">
                                                     {% if not product.sale_price %}

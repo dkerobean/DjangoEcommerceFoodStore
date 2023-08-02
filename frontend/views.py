@@ -240,10 +240,20 @@ def shop_page(request):
     
     categories = Category.objects.all()
     products = Product.objects.all()
+    
+    ratings = 0
 
+    for product in products:
+        # Retrieve the average rating for the product
+        average_rating = product.aggregate(Avg('product_reviews__rating'))['product_reviews__rating__avg']
+    # Round the average rating to 2 decimal places
+    average_rating = round(average_rating, 2) if average_rating else None
+    
     context = {
         "categories":categories,
-        "products":products
+        "products":products,  
+         "ratings":ratings
+       
     }    
     
 

@@ -74,7 +74,7 @@ class Review(models.Model):
     user_profile = models.ForeignKey(
         UserProfile, on_delete=models.CASCADE, related_name='reviews')
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, related_name='reviews')
+        Product, on_delete=models.CASCADE, related_name='product_reviews')
     review_text = models.TextField()
     review_title = models.CharField(max_length=50, blank=True, null=True)
     rating = models.PositiveIntegerField(default=5, validators=[MaxValueValidator(5)])
