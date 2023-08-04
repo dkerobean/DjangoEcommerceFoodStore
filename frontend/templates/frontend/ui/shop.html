@@ -10,13 +10,13 @@
                 <div class="category-container row justify-content-center cols-2 cols-xs-3 cols-sm-4 cols-md-6 pt-6">
                     {% for category in categories %}
                         <div class="category category-ellipse mb-4 mb-md-0">
-                            <a href="shop-4-cols.html#">
+                            <a href="{% url 'filter-product' category.name %}">
                                 <figure>
                                     <img src="{{ category.picture.url }}" alt="category" width="160" height="161">
                                 </figure>
                             </a>
                             <div class="category-content">
-                                <h3 class="category-name"><a href="shop-4-cols.html#">{{ category.name }}</a>
+                                <h3 class="category-name"><a href="q={{category.name}}">{{ category.name }}</a>
                                 </h3>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
             <nav class="breadcrumb-nav has-border">
                 <div class="container">
                     <ul class="breadcrumb">
-                        <li><a href="https://d-themes.com/html/panda/demo1.html">Home</a></li>
+                        <li><a href="#">Home</a></li>
                         <li>Shop</li>
                     </ul>
                 </div>
@@ -55,14 +55,11 @@
                                     </div>
                                     <div class="widget widget-collapsible">
                                         <h3 class="widget-title title-underline"><span
-                                                class="title-text">Nutrition</span></h3>
-                                        <ul class="widget-body filter-items">
-                                            <li><a href="shop-4-cols.html#">High Fibre</a></li>
-                                            <li><a href="shop-4-cols.html#">Low Calorie</a></li>
-                                            <li><a href="shop-4-cols.html#">No Sugar Added</a></li>
-                                            <li><a href="shop-4-cols.html#">Vegetarian</a></li>
-                                            <li><a href="shop-4-cols.html#">Low Fat</a></li>
-                                            <li><a href="shop-4-cols.html#">Whole Grain</a></li>
+                                                class="title-text">Category</span></h3>
+                                        <ul class="widget-body filter-items">                                            
+                                            {% for category in categories %}
+                                               <li><a href="{% url 'filter-product' category.name %}">{{ category.name }}</a></li> 
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                     <div class="widget widget-collapsible">
@@ -167,17 +164,7 @@
                                     <a href="shop-4-cols.html#"
                                         class="toolbox-item left-sidebar-toggle btn btn-outline btn-primary btn-icon-right d-lg-none"><span>Filter</span><i
                                             class="p-icon-category-1 ml-md-1"></i></a>
-                                    <div class="toolbox-item toolbox-sort select-menu">
-                                        <label>Sort By :</label>
-                                        <select name="orderby">
-                                            <option value="default" selected="selected">Default Sorting</option>
-                                            <option value="popularity">Sort By Popularity</option>
-                                            <option value="rating">Sort By The Latest</option>
-                                            <option value="date">Sort By Average Rating</option>
-                                            <option value="price-low">Sort By Price: Low To High</option>
-                                            <option value="price-high">Sort By Price: High To Low</option>
-                                        </select>
-                                    </div>
+                                    
                                 </div>
                                 <div class="toolbox-right">
                                     <div class="toolbox-item toolbox-show select-box">
@@ -238,8 +225,7 @@
                                                     <a href="">
                                                         {{ product.name }}                                                     
                                                     </a>
-                                                     <p>q{{average_ratings}}</p>                                                   
-                                                </h5>
+                                                     
                                                 <span class="product-price">
                                                     {% if not product.sale_price %}
                                                         <ins class="new-price">${{ product.price }}</ins>                                                        

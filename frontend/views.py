@@ -241,13 +241,16 @@ def shop_page(request):
     categories = Category.objects.all()
     products = Product.objects.all()
     
-    ratings = 0
+    ratings = {}  # Create an empty dictionary to store average ratings for each product
 
     for product in products:
         # Retrieve the average rating for the product
-        average_rating = product.aggregate(Avg('product_reviews__rating'))['product_reviews__rating__avg']
-    # Round the average rating to 2 decimal places
-    average_rating = round(average_rating, 2) if average_rating else None
+        average_rating = product.product_reviews.aggregate(Avg('rating'))['rating__avg']
+        # Round the average rating to 2 decimal places
+        average_rating = round(average_rating, 2) if average_rating else None
+        # Store the average rating in the ratings dictionary with the product's ID as the key
+        ratings[product.id] = average_rating
+        
     
     context = {
         "categories":categories,
@@ -257,6 +260,26 @@ def shop_page(request):
     }    
     
 
+    return render(request, 'frontend/ui/shop.html', context)
+
+def filter_products(request, q):
+    
+    # get the search query string from the URL
+    query = q
+    
+    products = Product.objects.all()
+    categories = Category.objects.all()
+
+    if query:
+        # filter the products queryset by category using the icontains lookup
+        products = products.filter(category__name__icontains=query)
+        
+    context = {
+        "products" : products, 
+        "categories":categories
+    }
+        
+    
     return render(request, 'frontend/ui/shop.html', context)
 
 
