@@ -187,6 +187,7 @@ def view_product(request, pk):
        
     # add review
     if request.method =='POST':
+        
         title = request.POST.get('title')
         review = request.POST.get('review')
         rating = request.POST.get('rating')
@@ -240,6 +241,7 @@ def shop_page(request):
     
     categories = Category.objects.all()
     products = Product.objects.all()
+    tags = Tag.objects.all()
     
     ratings = {}  # Create an empty dictionary to store average ratings for each product
 
@@ -255,7 +257,8 @@ def shop_page(request):
     context = {
         "categories":categories,
         "products":products,  
-         "ratings":ratings
+         "ratings":ratings,
+         "tags":tags
        
     }    
     
@@ -269,14 +272,16 @@ def filter_products(request, q):
     
     products = Product.objects.all()
     categories = Category.objects.all()
+    tags = Tag.objects.all()
 
     if query:
         # filter the products queryset by category using the icontains lookup
-        products = products.filter(category__name__icontains=query)
+        products = products.filter(category__name__icontains=query) | products.filter(tag__name__icontains=query)
         
     context = {
         "products" : products, 
-        "categories":categories
+        "categories":categories, 
+        "tags":tags
     }
         
     

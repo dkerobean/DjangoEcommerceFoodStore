@@ -126,33 +126,12 @@
                                         <h3 class="widget-title title-underline"><span class="title-text">Product
                                                 Tags</span></h3>
                                         <div class="widget-body mt-1">
-                                            <a href="shop-4-cols.html#" class="tag">
-                                                Organic
-                                            </a>
-                                            <a href="shop-4-cols.html#" class="tag">
-                                                greenhouse
-                                            </a>
-                                            <a href="shop-4-cols.html#" class="tag">
-                                                fat
-                                            </a>
-                                            <a href="shop-4-cols.html#" class="tag">
-                                                healthy
-                                            </a>
-                                            <a href="shop-4-cols.html#" class="tag">
-                                                dairy
-                                            </a>
-                                            <a href="shop-4-cols.html#" class="tag">
-                                                vitamin
-                                            </a>
-                                            <a href="shop-4-cols.html#" class="tag">
-                                                diet
-                                            </a>
-                                            <a href="shop-4-cols.html#" class="tag">
-                                                nutrition
-                                            </a>
-                                            <a href="shop-4-cols.html#" class="tag">
-                                                cholesterol
-                                            </a>
+                                            {% for tag in tags %}
+                                                <a href="{% url 'filter-product' tag.name %}" class="tag">
+                                                 {{ tag.name }}
+                                                </a>
+                                            {% endfor %}
+                                                                                       
                                         </div>
                                     </div>
                                 </div>
