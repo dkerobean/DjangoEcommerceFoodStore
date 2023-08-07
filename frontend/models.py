@@ -121,7 +121,7 @@ class Cart(models.Model):
                           primary_key=True, editable=False)
     
     def __str__(self):
-        return self.user
+        return f"Order for {self.user}"
     
 
 class CartItem(models.Model):
