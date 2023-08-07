@@ -9,7 +9,7 @@
                 <div class="container">
                     <div class="product-navigation">
                         <ul class="breadcrumb">
-                            <li><a href="https://d-themes.com/html/panda/demo1.html">Home</a></li>
+                            <li><a href="">Home</a></li>
                             <li><a href="product-simple.html">Products</a></li>
                             <li>Default</li>
                         </ul>
@@ -70,7 +70,7 @@
                                 </p>
                                 <p class="product-short-desc">{{ product.description }}
                                 </p>                               
-                                <div class="product-form product-unit mb-2 pt-1">
+                                {% comment %} <div class="product-form product-unit mb-2 pt-1">
                                     <label>WEIGHT UNIT</label>
                                     <div class="product-form-group pt-1">
                                         <div class="product-variations mb-1">
@@ -87,16 +87,12 @@
                                 </div>
                                 <div class="product-variation-price">
                                     <span>$239.00</span>
-                                </div>
+                                </div> {% endcomment %}
                                 <div class="product-form product-qty pt-1">
-                                    <div class="product-form-group">
-                                        <div class="input-group">
-                                            <button class="quantity-minus p-icon-minus-solid"></button>
-                                            <input class="quantity form-control" type="number" min="1" max="1000000">
-                                            <button class="quantity-plus p-icon-plus-solid"></button>
-                                        </div>
-                                        <button class="btn-product btn-cart ls-normal font-weight-semi-bold"><i
-                                                class="p-icon-cart-solid"></i>ADD TO CART</button>
+                                    <div class="product-form-group">                                       
+                                         <a href="{% url 'add-to-cart' product.id %}"  class="btn btn-secondary btn-block mb-4"><i
+                                                class="p-icon-cart-solid"></i>ADD TO CART
+                                            </a>                                                                              
                                     </div>
                                 </div>
                                 <div class="product-action pt-5 pb-3">
@@ -268,8 +264,8 @@
                                             height="369" />
                                     </a>
                                     <div class="product-action-vertical">
-                                        <a href="{% url 'view-product' product.id %}" class="btn-product-icon btn-cart"
-                                            data-toggle="modal" data-target="#addCartModal" title="Add to Cart">
+                                        <a href="{% url 'add-to-cart' product.id %}" class="btn-product-icon "
+                                            title="Add to Cart">
                                             <i class="p-icon-cart-solid"></i>
                                         </a>
                                         <a href="product-simple.html#" class="btn-product-icon btn-wishlist"
