@@ -186,8 +186,8 @@
                                                     <label class="product-label label-sale">-40%</label>
                                                 </div>
                                                 <div class="product-action-vertical">
-                                                    <a href="demo1.html#" class="btn-product-icon btn-cart"
-                                                        data-toggle="modal" data-target="#addCartModal" title="Add to Cart">
+                                                    <a href="{% url 'add-to-cart' top.id %}" class="btn-product-icon "
+                                                        title="Add to Cart">
                                                         <i class="p-icon-cart-solid"></i>
                                                     </a>
                                                     <a href="demo1.html#" class="btn-product-icon btn-wishlist"
@@ -1156,8 +1156,8 @@
                                         <label class="product-label label-new">New</label>
                                     </div>
                                     <div class="product-action-vertical">
-                                        <a href="demo1.html#" class="btn-product-icon btn-cart" data-toggle="modal"
-                                            data-target="#addCartModal" title="Add to Cart">
+                                        <a href="{% url 'add-to-cart' product.id %}" class="btn-product-icon "
+                                            title="Add to Cart">
                                             <i class="p-icon-cart-solid"></i>
                                         </a>
                                         <a href="#" class="btn-product-icon btn-wishlist" title="Add to Wishlist">
@@ -1273,8 +1273,8 @@
                                         <label class="product-label label-new">New</label>
                                     </div>
                                     <div class="product-action-vertical">
-                                        <a href="demo1.html#" class="btn-product-icon btn-cart" data-toggle="modal"
-                                            data-target="#addCartModal" title="Add to Cart">
+                                        <a href="{% url 'add-to-cart' product.id %}" class="btn-product-icon "
+                                            title="Add to Cart">
                                             <i class="p-icon-cart-solid"></i>
                                         </a>
                                         <a href="#" class="btn-product-icon btn-wishlist" title="Add to Wishlist">

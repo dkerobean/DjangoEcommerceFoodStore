@@ -330,8 +330,11 @@ def remove_from_cart(request, cart_item_id):
     if cart_item.quantity > 1:
         cart_item.quantity -= 1
         cart_item.save()
+        return redirect('cart')
     else:
         cart_item.delete()
+        messages.success(request, 'Item removed from cart')
+        return redirect('cart')
 
     return redirect('cart')
 

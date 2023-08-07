@@ -173,8 +173,8 @@
                                                         height="369" />
                                                 </a>
                                                 <div class="product-action-vertical">
-                                                    <a href="shop-4-cols.html#" class="btn-product-icon btn-cart"
-                                                        data-toggle="modal" data-target="#addCartModal" title="Add to Cart">
+                                                    <a href="{% url 'add-to-cart' product.id %}" class="btn-product-icon "
+                                                        title="Add to Cart">
                                                         <i class="p-icon-cart-solid"></i>
                                                     </a>
                                                     <a href="shop-4-cols.html#" class="btn-product-icon btn-wishlist"
