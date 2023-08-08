@@ -226,46 +226,29 @@
                                     <a href="demo1.html#" class="btn btn-dark btn-link btn-close">close<i
                                             class="p-icon-arrow-long-right"></i><span class="sr-only">Cart</span></a>
                                 </div>
-                                <div class="products scrollable">
-                                    <div class="product product-mini">
-                                        <figure class="product-media">
-                                            <a href="https://d-themes.com/html/panda/product-simple.html">
-                                                <img src="{% static 'images/cart/product-1.jpg' %}" alt="product" width="84"
-                                                    height="105" />
-                                            </a>
-                                            <a href="demo1.html#" title="Remove Product" class="btn-remove">
-                                                <i class="p-icon-times"></i><span class="sr-only">Close</span>
-                                            </a>
-                                        </figure>
-                                        <div class="product-detail">
-                                            <a href="https://d-themes.com/html/panda/product.html"
-                                                class="product-name">Peanuts</a>
-                                            <div class="price-box">
-                                                <span class="product-quantity">7</span>
-                                                <span class="product-price">$12.00</span>
+                                <div class="products scrollable">                                    
+                                    {% for item in cart_items %}
+                                        <div class="product product-mini">
+                                            <figure class="product-media">
+                                                <a href="{% url 'view-product' item.product.id %}">
+                                                    <img src="{{ item.product.product_picture.url }}" alt="product" width="64"
+                                                        height="84" />
+                                                </a>
+                                                <a href="{% url 'remove-from-cart' item.id %}" title="Remove Product" class="btn-remove">
+                                                    <i class="p-icon-times"></i><span class="sr-only">Close</span>
+                                                </a>
+                                            </figure>
+                                            <div class="product-detail">
+                                                <a href="{% url 'view-product' item.product.id %}"
+                                                    class="product-name">{{ item.product.name }}</a>
+                                                <div class="price-box">
+                                                    <span class="product-quantity">{{ item.quantity }}</span>
+                                                    <span class="product-price">${{ item.product.price }}</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="product product-mini">
-                                        <figure class="product-media">
-                                            <a href="https://d-themes.com/html/panda/product-simple.html">
-                                                <img src="{% static 'images/cart/product-2.jpg' %}" alt="product" width="84"
-                                                    height="105" />
-                                            </a>
-                                            <a href="demo1.html#" title="Remove Product" class="btn-remove">
-                                                <i class="p-icon-times"></i><span class="sr-only">Close</span>
-                                            </a>
-                                        </figure>
-                                        <div class="product-detail">
-                                            <a href="https://d-themes.com/html/panda/product.html"
-                                                class="product-name">Prime Beef</a>
-                                            <div class="price-box">
-                                                <span class="product-quantity">4</span>
-                                                <span class="product-price">$16.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
+                                    
 
                                 </div>
 

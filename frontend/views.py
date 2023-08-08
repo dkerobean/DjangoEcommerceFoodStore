@@ -21,7 +21,7 @@ from .tokens import account_activation_token
 import random
 from django.db.models import Avg
 
-
+    
 
 """ AUTH """
 
@@ -60,7 +60,7 @@ def user_logout(request):
     messages.success(request, 'Logged Out')
     return redirect('index')
 
-    return render(request, 'frontend/ui/index.html')\
+    return render(request, 'frontend/ui/index.html')
                     
 
 
@@ -150,6 +150,9 @@ def index_page(request):
     new_arrivals = Product.objects.filter(tag__name="New arrivals")
     featured_products = Product.objects.filter(tag__name="featured")
     
+    # Get items in cart
+    cart = Cart.objects.get(user=request.user)
+    cart_items = cart.cartitem_set.all()
     
     
     context = {
@@ -157,7 +160,8 @@ def index_page(request):
         'categories':categories,
         'top_products':top_products,
         'new_arrivals':new_arrivals, 
-        "featured":featured_products
+        "featured":featured_products, 
+        "cart_items":cart_items
     }
     
     return render(request, 'frontend/ui/index.html', context)
