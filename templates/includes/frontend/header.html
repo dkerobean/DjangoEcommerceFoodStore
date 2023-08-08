@@ -209,7 +209,7 @@
                             </div>
 
                         </div>
-                        <a href="https://d-themes.com/html/panda/wishlist.html" class="wishlist wishlist-toggle"
+                        <a href="" class="wishlist wishlist-toggle"
                             title="Wishlist">
                             <i class="p-icon-heart-solid"></i>
                         </a>
@@ -231,8 +231,9 @@
                                         <div class="product product-mini">
                                             <figure class="product-media">
                                                 <a href="{% url 'view-product' item.product.id %}">
-                                                    <img src="{{ item.product.product_picture.url }}" alt="product" width="64"
-                                                        height="84" />
+                                                    <img class="product-media" src="{{ item.product.product_picture.url }}" alt="product"
+                                                            style="width: 64px; height: 84px;" />
+
                                                 </a>
                                                 <a href="{% url 'remove-from-cart' item.id %}" title="Remove Product" class="btn-remove">
                                                     <i class="p-icon-times"></i><span class="sr-only">Close</span>
@@ -247,11 +248,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    {% endfor %}
-                                    
-
+                                    {% endfor %}                                   
                                 </div>
-
                                 <div class="cart-total">
                                     <label>Subtotal:</label>
                                     <span class="price">$148.00</span>
@@ -261,7 +259,7 @@
                                     <a href="{% url 'cart' %}"
                                         class="btn btn-outline btn-dim mb-2">View
                                         Cart</a>
-                                    <a href="https://d-themes.com/html/panda/checkout.html" class="btn btn-dim"><span>Go
+                                    <a href="" class="btn btn-dim"><span>Go
                                             To Checkout</span></a>
                                 </div>
 
