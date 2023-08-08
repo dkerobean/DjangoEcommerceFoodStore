@@ -20,7 +20,6 @@ from .models import Category, Product, Tag, Review
 from .tokens import account_activation_token
 import random
 from django.db.models import Avg
-
     
 
 """ AUTH """

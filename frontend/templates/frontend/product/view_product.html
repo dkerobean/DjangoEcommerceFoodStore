@@ -69,27 +69,9 @@
                                     {% endif %} 
                                 </p>
                                 <p class="product-short-desc">{{ product.description }}
-                                </p>                               
-                                {% comment %} <div class="product-form product-unit mb-2 pt-1">
-                                    <label>WEIGHT UNIT</label>
-                                    <div class="product-form-group pt-1">
-                                        <div class="product-variations mb-1">
-                                            <a href="product-simple.html#">EACH</a>
-                                            <a href="product-simple.html#">POUND</a>
-                                            <a href="product-simple.html#">1LB</a>
-                                            <a href="product-simple.html#">1KG</a>
-                                            <a href="product-simple.html#">500G</a>
-                                        </div>
-                                        <a href="product-simple.html#" class="product-variation-clean"
-                                            style="display: none;">Clean
-                                            All</a>
-                                    </div>
-                                </div>
-                                <div class="product-variation-price">
-                                    <span>$239.00</span>
-                                </div> {% endcomment %}
-                                <div class="product-form product-qty pt-1">
-                                    <div class="product-form-group">                                       
+                                </p>                                                             
+                                <div class="product-form product-qty pt-1">                                    
+                                    <div class="product-form-group mt-3">                                       
                                          <a href="{% url 'add-to-cart' product.id %}"  class="btn btn-secondary btn-block mb-4"><i
                                                 class="p-icon-cart-solid"></i>ADD TO CART
                                             </a>                                                                              

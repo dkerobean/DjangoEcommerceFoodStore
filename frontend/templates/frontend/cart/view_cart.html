@@ -23,6 +23,7 @@
                                         <th></th>
                                         <th><span>Price</span></th>
                                         <th><span>quantity</span></th>
+                                        <th><span></span></th>
                                         <th>Subtotal</th>
                                     </tr>
                                 </thead>
@@ -46,6 +47,9 @@
                                                 <span class="amount">${{ item.product.price }}</span>
                                             </td>
                                             <td class="product-quantity">
+                                                <span class="amount">{{ item.quantity }}</span>                                               
+                                            </td>
+                                            <td class="change-quantity">
                                                 <div class="input-group">
                                                     <button class="quantity-minus p-icon-minus-solid"></button>
                                                     <input class="quantity form-control" type="number" min="1"
