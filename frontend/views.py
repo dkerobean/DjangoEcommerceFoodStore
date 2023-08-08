@@ -304,7 +304,9 @@ def add_to_cart(request, product_id):
         cart=cart, product=product)
 
     # If the product is already in the cart, increase the quantity, else set quantity to 1
-    cart_item.quantity += 1
+    if not item_created:
+        cart_item.quantity = 1
+        
     messages.success(request, 'Item added successfully')
     cart_item.save()
 

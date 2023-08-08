@@ -96,7 +96,7 @@
                         <div class="dropdown login-dropdown off-canvas">
                             <!-- Login Condition -->
                             {% if request.user.is_authenticated %}
-                                <a class="wishlist wishlist-toggle" href="{% url 'user-dashboard' %}">
+                                <a class="login-toggle" href="{% url 'user-dashboard' %}">
                                     <span class="sr-only">Dashboard</span>
                                     <i class="p-icon-user-solid"></i>
                                 </a>
@@ -216,7 +216,7 @@
                         <div class="dropdown cart-dropdown off-canvas mr-0 mr-lg-2">
                             <a href="demo1.html#" class="cart-toggle link">
                                 <i class="p-icon-cart-solid">
-                                    <span class="cart-count">2</span>
+                                    <span class="cart-count">{{ cart_items.count }}</span>
                                 </i>
                             </a>
                             <div class="canvas-overlay"></div>
