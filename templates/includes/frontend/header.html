@@ -215,9 +215,16 @@
                         </a>
                         <div class="dropdown cart-dropdown off-canvas mr-0 mr-lg-2">
                             <a href="demo1.html#" class="cart-toggle link">
-                                <i class="p-icon-cart-solid">
-                                    <span class="cart-count">{{ cart_items.count }}</span>
-                                </i>
+                                
+                                {% if not cart_items %}
+                                    <i class="p-icon-cart-solid">
+                                        <span class="cart-count">0</span>
+                                    </i>
+                                {% else %}
+                                    <i class="p-icon-cart-solid">
+                                        <span class="cart-count">{{ cart_items.count }}</span>
+                                    </i>    
+                                {% endif %}          
                             </a>
                             <div class="canvas-overlay"></div>
                             <div class="dropdown-box">
@@ -226,7 +233,15 @@
                                     <a href="demo1.html#" class="btn btn-dark btn-link btn-close">close<i
                                             class="p-icon-arrow-long-right"></i><span class="sr-only">Cart</span></a>
                                 </div>
-                                <div class="products scrollable">                                    
+                                <div class="products scrollable">
+                                    
+                                    {% if not cart_items %}
+                                        <div class="cart-action mt-3">
+                                            <a href="{% url 'shop' %}"
+                                                class="btn btn-outline btn-dim mb-2">Start Shoping</a>
+                                        </div>
+                                    {% endif %}
+                                                                          
                                     {% for item in cart_items %}
                                         <div class="product product-mini">
                                             <figure class="product-media">
@@ -248,23 +263,20 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="cart-total">
+                                            <label>Subtotal:</label>
+                                            <span class="price">$148.00</span>
+                                        </div>
+                                        <div class="cart-action">
+                                            <a href="{% url 'cart' %}"
+                                                class="btn btn-outline btn-dim mb-2">View
+                                                Cart</a>
+                                            <a href="" class="btn btn-dim"><span>Go
+                                                    To Checkout</span></a>
+                                        </div>
                                     {% endfor %}                                   
-                                </div>
-                                <div class="cart-total">
-                                    <label>Subtotal:</label>
-                                    <span class="price">$148.00</span>
-                                </div>
-
-                                <div class="cart-action">
-                                    <a href="{% url 'cart' %}"
-                                        class="btn btn-outline btn-dim mb-2">View
-                                        Cart</a>
-                                    <a href="" class="btn btn-dim"><span>Go
-                                            To Checkout</span></a>
-                                </div>
-
+                                </div>                                                               
                             </div>
-
                         </div>
                     </div>
                 </div>

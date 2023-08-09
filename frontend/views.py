@@ -20,6 +20,7 @@ from .models import Category, Product, Tag, Review
 from .tokens import account_activation_token
 import random
 from django.db.models import Avg
+from django.contrib.auth.models import AnonymousUser
     
 
 """ AUTH """
@@ -148,19 +149,14 @@ def index_page(request):
     top_products = Product.objects.filter(tag__name="top")
     new_arrivals = Product.objects.filter(tag__name="New arrivals")
     featured_products = Product.objects.filter(tag__name="featured")
-    
-    # Get items in cart
-    cart = Cart.objects.get(user=request.user)
-    cart_items = cart.cartitem_set.all()
-    
+
     
     context = {
         'form':form, 
         'categories':categories,
         'top_products':top_products,
         'new_arrivals':new_arrivals, 
-        "featured":featured_products, 
-        "cart_items":cart_items
+        "featured":featured_products 
     }
     
     return render(request, 'frontend/ui/index.html', context)
@@ -264,8 +260,7 @@ def shop_page(request):
         "categories":categories,
         "products":products,  
          "ratings":ratings,
-         "tags":tags
-       
+         "tags":tags      
     }    
     
 
