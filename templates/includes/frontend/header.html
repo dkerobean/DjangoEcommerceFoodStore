@@ -93,10 +93,10 @@
                                 </button>
                             </form>
                         </div>
-                        <div class="dropdown login-dropdown off-canvas">
+                        <div class=" login-dropdown off-canvas">
                             <!-- Login Condition -->
                             {% if request.user.is_authenticated %}
-                                <a class="login-toggle" href="{% url 'user-dashboard' %}">
+                                <a class="wishlist wishlist-toggle" href="{% url 'user-dashboard' %}">
                                     <span class="sr-only">Dashboard</span>
                                     <i class="p-icon-user-solid"></i>
                                 </a>
