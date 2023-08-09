@@ -21,6 +21,7 @@ from .tokens import account_activation_token
 import random
 from django.db.models import Avg
 from django.contrib.auth.models import AnonymousUser
+
     
 
 """ AUTH """
@@ -105,7 +106,7 @@ def user_register(request):
 
             messages.success(
                 request, 'Registration successful. Please check your email to activate your account.')
-            return redirect('index')
+            return redirect('admin-dashboard')
         else:
             messages.error(request, 'Something went wrong')
 
@@ -189,7 +190,6 @@ def view_product(request, pk):
        
     # add review
     if request.method =='POST':
-        
         title = request.POST.get('title')
         review = request.POST.get('review')
         rating = request.POST.get('rating')
@@ -288,8 +288,10 @@ def filter_products(request, q):
     return render(request, 'frontend/ui/shop.html', context)
 
 
-@login_required(login_url="user-login")
+@login_required(login_url="login-register")
 def add_to_cart(request, product_id):
+    
+    next_url = request.GET.get('next', 'index')
     
     product = get_object_or_404(Product, pk=product_id)
     cart, created = Cart.objects.get_or_create(user=request.user)
@@ -306,10 +308,11 @@ def add_to_cart(request, product_id):
     messages.success(request, 'Item added successfully')
     cart_item.save()
 
-    return redirect('cart')
+    redirect_url = request.META.get('HTTP_REFERER')
+    return redirect(redirect_url)
 
 
-@login_required(login_url='user-login')
+@login_required(login_url="login-register")
 def view_cart(request):
     
     cart, created = Cart.objects.get_or_create(user=request.user)
@@ -322,7 +325,7 @@ def view_cart(request):
     return render(request, 'frontend/cart/view_cart.html', context)
 
 
-@login_required(login_url='user-login')
+@login_required(login_url="login-register")
 def remove_from_cart(request, cart_item_id):
     
     cart_item = get_object_or_404(CartItem, pk=cart_item_id)
@@ -331,11 +334,13 @@ def remove_from_cart(request, cart_item_id):
     if cart_item.quantity > 1:
         cart_item.quantity -= 1
         cart_item.save()
-        return redirect('cart')
+        redirect_url = request.META.get('HTTP_REFERER')
+        return redirect(redirect_url)
     else:
         cart_item.delete()
         messages.success(request, 'Item removed from cart')
-        return redirect('cart')
+        redirect_url = request.META.get('HTTP_REFERER')
+        return redirect(redirect_url)
 
     return redirect('cart')
 
