@@ -260,10 +260,11 @@
                                         </div>                                        
                                     {% endfor %}                                                                     
                                 </div>
-                                <div class="cart-total">
+                                {% comment %} <div class="cart-total">
                                             <label>Subtotal:</label>
                                             <span class="price">$148.00</span>
-                                        </div>
+                                        </div> {% endcomment %}
+                                        <br>
                                         <div class="cart-action">
                                             <a href="{% url 'cart' %}"
                                                 class="btn btn-outline btn-dim mb-2">View
