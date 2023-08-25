@@ -232,12 +232,8 @@ def view_product(request, pk):
     return render(request, 'frontend/product/view_product.html', context)
 
 
-def account_dashboard(request):
-    
-    #user = Profile.objects.get(id=pk)
-    
-    return render(request, 'frontend/ui/account.html')
 
+""" SHOP """
 
 def shop_page(request):
     
@@ -288,6 +284,8 @@ def filter_products(request, q):
     return render(request, 'frontend/ui/shop.html', context)
 
 
+""" CART PAGES """
+
 @login_required(login_url="login-register")
 def add_to_cart(request, product_id):
     
@@ -326,6 +324,12 @@ def view_cart(request):
 
 
 @login_required(login_url="login-register")
+def checkout(request):
+    return render(request, 'frontend/cart/checkout.html')
+    
+
+
+@login_required(login_url="login-register")
 def remove_from_cart(request, cart_item_id):
     
     cart_item = get_object_or_404(CartItem, pk=cart_item_id)
@@ -346,6 +350,7 @@ def remove_from_cart(request, cart_item_id):
 
 
 
+
 def about_page(request):
 
     return render(request, 'frontend/ui/about.html')
@@ -354,3 +359,10 @@ def about_page(request):
 def contact_page(request):
 
     return render(request, 'frontend/ui/contact.html')
+
+
+def account_dashboard(request):
+    
+    #user = Profile.objects.get(id=pk)
+    
+    return render(request, 'frontend/ui/account.html')
