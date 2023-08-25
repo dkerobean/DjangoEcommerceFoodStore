@@ -21,19 +21,19 @@
                     <div class="tab tab-vertical gutter-lg">
                         <ul class="nav nav-tabs mb-8 col-lg-3 col-md-4">
                             <li class="nav-item">
-                                <a class="nav-link active" href="account.html#dashboard">Dashboard</a>
+                                <a class="nav-link active" href="#dashboard">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="account.html#orders">Orders</a>
+                                <a class="nav-link" href="#orders">Orders</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="account.html#downloads">Downloads</a>
+                                <a class="nav-link" href="#downloads">Downloads</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="account.html#address">Addresses</a>
+                                <a class="nav-link" href="#address">Addresses</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="account.html#account">Account details</a>
+                                <a class="nav-link" href="#account">Account details</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link no-tab-item"
@@ -52,7 +52,7 @@
                                         href="{% url 'user-logout' %}" class="text-primary">Log
                                         out</a>)
                                 </p>
-                                <p class>
+                                <p class="">
                                     From your account dashboard you can view your
                                     <a href="account.html#orders" class="link-to-tab text-primary">recent orders</a>,
                                     manage your <a href="account.html#address" class="link-to-tab text-primary">
@@ -321,25 +321,17 @@
                                 </div>
                             </div>
                             <div class="tab-pane" id="account">
-                                <form action="account.html#">
+                                <form action="{% url 'user-dashboard' %}" method="POST">
+                                    {% csrf_token %}
                                     <div class="row">
-                                        <div class="col-sm-6 mb-4">
-                                            <label>First Name *</label>
-                                            <input type="text" name="first_name" placeholder="John" required>
+                                        {% for field in profile_form %}
+                                            <div class="col-sm-6 mb-4">
+                                                <label>{{ field.label }}</label>
+                                                {{field}}
                                         </div>
-                                        <div class="col-sm-6 mb-4">
-                                            <label>Last Name *</label>
-                                            <input type="text" name="last_name" placeholder="Doe" required>
-                                        </div>
+                                        {% endfor %}                                                                                
                                     </div>
-                                    <label>Display Name *</label>
-                                    <input type="text" name="display_name" required placeholder="John Doe" class="mb-4">
-                                    <span>
-                                        <small class="d-block mb-4">This will be how your name will be displayed
-                                            in the account section and in reviews</small>
-                                    </span>
-                                    <label>Email Address *</label>
-                                    <input type="email" name="email" required placeholder="nicework125@gmail.com">
+                                    
                                     <fieldset>
                                         <legend>Password Change</legend>
                                         <label>Current password (leave blank to leave unchanged)</label>

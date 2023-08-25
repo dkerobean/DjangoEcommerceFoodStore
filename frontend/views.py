@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Product, Cart, CartItem
+from .models import Product, Cart, CartItem, UserProfile
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth import logout as auth_logout
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, UserProfileEditForm
 
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
@@ -363,6 +363,31 @@ def contact_page(request):
 
 def account_dashboard(request):
     
-    #user = Profile.objects.get(id=pk)
+    profile_form = UserProfileEditForm()
+    user_profile = UserProfile.objects.get(user=request.user)
+    user = request.user
     
-    return render(request, 'frontend/ui/account.html')
+    if request.method == "POST":
+        profile_form = UserProfileEditForm(request.POST, instance=user_profile)
+        if profile_form.is_valid():
+            user.first_name = profile_form.cleaned_data['first_name']
+            user.last_name = profile_form.cleaned_data['last_name']
+            user.username = profile_form.cleaned_data['username']
+            user.save()
+            profile_form.save()
+            messages.success(request, 'Addedd Successfully')
+            return redirect('user-dashboard')
+    else:
+        profile_form = UserProfileEditForm(instance=user_profile, initial={
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'username': user.username
+        })
+      
+        
+    context = {
+        'profile_form':profile_form
+    }
+    
+    
+    return render(request, 'frontend/ui/account.html', context)
