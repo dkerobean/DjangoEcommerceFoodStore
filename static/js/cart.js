@@ -20,14 +20,16 @@ for (var i = 0; i < productQuantity.length; i++) {
 }
 
 
-const inputQuantity = document.querySelectorAll(".input-quantity"); 
 
-function updateCart(q) {
+
+function updateCart() {
+    var inputQuantity = document.querySelectorAll(".input-quantity");
+
     for (var i = 0; i < productQuantity.length; i++) {
 
-    productQuantity.textContent = "$" + q
-    const quantity = parseInt(productQuantity[i].textContent);
+    const quantity = parseInt(inputQuantity[i].value);
     const price = parseFloat(productPrice[i].textContent.slice(1));
+
 
     const subtotalValue = price * quantity;
     subTotals[i].textContent = `$${subtotalValue.toFixed(2)}`;
@@ -36,7 +38,7 @@ function updateCart(q) {
     totalPrice.textContent = "$" + total;
     subtotal.textContent = "$" + total;
     
-    }
+}
 }
 
 

@@ -49,17 +49,17 @@
                                             <td class="product-quantity">
                                                 <span class="cart-quantity">{{ item.quantity }}</span>                                               
                                             </td>
-                                            <td class="change-quantity">
+                                            {% comment %} <td class="change-quantity">
                                                 <div class="input-group">
                                                     <button class="quantity-minus p-icon-minus-solid"></button>
                                                     <input class="quantity form-control" type="number" min="1"
                                                         max="1000000" value="3">
                                                     <button class="quantity-plus p-icon-plus-solid"></button>
                                                 </div>
-                                            </td>
+                                            </td> {% endcomment %}
                                             <td>
                                                 <div class="input-group">
-                                                <input type="text" class="input-quantity">
+                                                <input id="input-quantity" type="text" value="{{ item.quantity }}" class="input-quantity">
                                                 </div>
                                             </td>
                                             <td class="product-total">
