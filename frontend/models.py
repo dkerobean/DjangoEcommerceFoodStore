@@ -20,9 +20,9 @@ class UserProfile(models.Model):
 class Address(models.Model):
     user_profile = models.ForeignKey(
         UserProfile, on_delete=models.CASCADE, related_name='address')
-    country = models.CharField(max_length=100)
+    country = models.CharField(max_length=100, blank=True, null=True)
     address = models.TextField()
-    state = models.CharField(max_length=100)
+    state = models.CharField(max_length=100, blank=True, null=True)
     city = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=15)
     id = models.UUIDField(default=uuid.uuid4, unique=True,

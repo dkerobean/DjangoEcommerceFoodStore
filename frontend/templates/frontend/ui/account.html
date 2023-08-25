@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
                                     <div class="ib-wrapper mb-4">
-                                        <div class="icon-box text-center ib-border"><a href="account.html#downloads">
+                                        <div class="icon-box text-center ib-border"><a href="#downloads">
                                                 <span class="icon-box-icon">
                                                     <i class="p-icon-download"></i>
                                                 </span>
@@ -85,7 +85,7 @@
                                         </div>
                                     </div>
                                     <div class="ib-wrapper mb-4">
-                                        <div class="icon-box text-center ib-border"><a href="account.html#address">
+                                        <div class="icon-box text-center ib-border"><a href="#address">
                                                 <span class="icon-box-icon">
                                                     <i class="p-icon-map"></i>
                                                 </span>
@@ -96,7 +96,7 @@
                                         </div>
                                     </div>
                                     <div class="ib-wrapper mb-4">
-                                        <div class="icon-box text-center ib-border"><a href="account.html#account">
+                                        <div class="icon-box text-center ib-border"><a href="#account">
                                                 <span class="icon-box-icon">
                                                     <i class="p-icon-user-solid"></i>
                                                 </span>
@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="ib-wrapper mb-4">
                                         <div class="icon-box text-center ib-border"><a
-                                                href="https://d-themes.com/html/panda/wishlist.html"
+                                                href=""
                                                 class="no-tab-item">
                                                 <span class="icon-box-icon">
                                                     <i class="p-icon-heart-solid"></i>
@@ -258,12 +258,12 @@
                                         <div class="card card-address">
                                             <div class="card-body">
                                                 <h5 class="card-title lh-2 mb-2">Billing Address</h5>
-                                                <p>John Doe<br>
+                                                <p>John Doe1<br>
                                                     Panda Company<br>
                                                     Steven street<br>
                                                     El Carjon, CA 92020
                                                 </p>
-                                                <p><a href="https://d-themes.com/cdn-cgi/l/email-protection"
+                                                <p><a href="#"
                                                         class="__cf_email__"
                                                         data-cfemail="c7a9aea4a2b0a8b5acf6f5f287a0aaa6aeabe9a4a8aa">[email&#160;protected]</a>
                                                 </p>
@@ -273,8 +273,8 @@
                                     <div class="col-sm-6">
                                         <div class="card card-address">
                                             <div class="card-body">
-                                                <h5 class="card-title lh-2 mb-2">Shipping Address</h5>
-                                                <p>You have not set up this type of address yet.</p>
+                                                <h5 class="card-title lh-2 mb-2">Shipping 1Address</h5>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -296,12 +296,18 @@
                                         <div class="card card-address">
                                             <div class="card-body">
                                                 <h5 class="card-title lh-2 mb-2">Billing Address</h5>
-                                                <p>John Doe<br>
-                                                    Panda Company<br>
-                                                    Steven street<br>
-                                                    El Carjon, CA 92020
-                                                </p>
-                                                <a href="account.html#"
+                                                
+                                                {% if user_address is None %}
+                                                    <p>You have not set up this type of address yet.</p>
+                                                {% else %}
+                                                    <p>{{ request.user.first_name }} {{ request.user.last_name }}<br>
+                                                        {{ user_address.city|capfirst }}<br>
+                                                        {{ user_address.address|capfirst }}<br>
+                                                        {{ user_address.phone_number }}
+                                                    </p>
+                                                {% endif %}
+                                                                                                   
+                                                <a href="#"
                                                     class="btn btn-link btn-primary btn-underline">Edit your
                                                     billing address<i class="p-icon-arrow-long-right"></i></a>
                                             </div>
@@ -310,11 +316,18 @@
                                     <div class="col-sm-6 mb-4">
                                         <div class="card card-address">
                                             <div class="card-body">
-                                                <h5 class="card-title lh-2 mb-2">Shipping Address</h5>
-                                                <p>You have not set up this type of address yet.</p>
-                                                <a href="account.html#"
-                                                    class="btn btn-link btn-primary btn-underline">Add <i
-                                                        class="p-icon-arrow-long-right"></i></a>
+                                                <h5 class="card-title lh-2 mb-2">Shipping Address</h5>                                                                                                  
+                                                <form action="{% url 'user-dashboard' %}" method="POST">
+                                                    {% csrf_token %}
+                                                    {% for field in address_form %}
+                                                        <div class="col-sm-12 mb-2">
+                                                            <label>{{ field.label }}</label>
+                                                            {{field}}
+                                                        </div>
+                                                    {% endfor %}
+                                                    <br>
+                                                    <button type="submit" class="btn btn-primary">SAVE CHANGES</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -328,7 +341,7 @@
                                             <div class="col-sm-6 mb-4">
                                                 <label>{{ field.label }}</label>
                                                 {{field}}
-                                        </div>
+                                             </div>
                                         {% endfor %}                                                                                
                                     </div>
                                     

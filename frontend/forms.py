@@ -39,14 +39,14 @@ class UserProfileEditForm(ModelForm):
                  'placeholder': field.label})
             
             
-class UserAddressEditForm(MoelForm):
+class UserAddressEditForm(ModelForm):
     
     class Meta:
         model = Address
-        fields = '__all__'
+        fields = ['city', 'address', 'phone_number']
         
     def __init__(self, *args, **kwargs):
-        super(UserProfileEditForm, self).__init__(*args, **kwargs)
+        super(UserAddressEditForm, self).__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
             field.widget.attrs.update(

@@ -15,7 +15,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth import get_user_model
 import base64
-from .models import Category, Product, Tag, Review
+from .models import Category, Product, Tag, Review, Address
 
 from .tokens import account_activation_token
 import random
@@ -367,14 +367,20 @@ def account_dashboard(request):
     profile_form = UserProfileEditForm()
     user_profile = UserProfile.objects.get(user=request.user)
     
+    user = request.user
+    user_profile = request.user.profile
+    
     # user address 
     address_form = UserAddressEditForm()
     
-    user = request.user
+    try:
+        user_address = Address.objects.get(user_profile=user_profile)
+    except Address.DoesNotExist:
+        user_address = None
     
     if request.method == "POST":
         
-        #account info
+        # account info
         profile_form = UserProfileEditForm(request.POST, instance=user_profile)
         if profile_form.is_valid():
             user.first_name = profile_form.cleaned_data['first_name']
@@ -386,24 +392,28 @@ def account_dashboard(request):
             return redirect('user-dashboard')
         
         # user address 
-        address_form = UserAddressEditForm(request.POST)
+        address_form = UserAddressEditForm(request.POST, instance=user_address)
         if address_form.is_valid():
-            address_form.save()
-            messages.success(request, 'Addedd Successfully')
+            address = address_form.save(commit=False)
+            address.user_profile = user_profile
+            address.save()
+            messages.success(request, 'Address Addedd Successfully')
             return redirect('user-dashboard')
-            
-            
+                       
     else:
         profile_form = UserProfileEditForm(instance=user_profile, initial={
             'first_name': user.first_name,
             'last_name': user.last_name,
             'username': user.username
         })
+        
+        address_form = UserAddressEditForm(instance=user_address)
       
         
     context = {
         'profile_form':profile_form,
-        'address_form':address_form
+        'address_form':address_form, 
+        'user_address':user_address
     }
     
     
