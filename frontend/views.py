@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth import logout as auth_logout
-from .forms import UserRegistrationForm, UserProfileEditForm
+from .forms import UserRegistrationForm, UserProfileEditForm, UserAddressEditForm
 
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
@@ -363,11 +363,18 @@ def contact_page(request):
 
 def account_dashboard(request):
     
+    # account info 
     profile_form = UserProfileEditForm()
     user_profile = UserProfile.objects.get(user=request.user)
+    
+    # user address 
+    address_form = UserAddressEditForm()
+    
     user = request.user
     
     if request.method == "POST":
+        
+        #account info
         profile_form = UserProfileEditForm(request.POST, instance=user_profile)
         if profile_form.is_valid():
             user.first_name = profile_form.cleaned_data['first_name']
@@ -377,6 +384,15 @@ def account_dashboard(request):
             profile_form.save()
             messages.success(request, 'Addedd Successfully')
             return redirect('user-dashboard')
+        
+        # user address 
+        address_form = UserAddressEditForm(request.POST)
+        if address_form.is_valid():
+            address_form.save()
+            messages.success(request, 'Addedd Successfully')
+            return redirect('user-dashboard')
+            
+            
     else:
         profile_form = UserProfileEditForm(instance=user_profile, initial={
             'first_name': user.first_name,
@@ -386,7 +402,8 @@ def account_dashboard(request):
       
         
     context = {
-        'profile_form':profile_form
+        'profile_form':profile_form,
+        'address_form':address_form
     }
     
     
