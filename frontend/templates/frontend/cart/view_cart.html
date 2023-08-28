@@ -56,14 +56,15 @@
                                                 </div>
                                             </td> {% endcomment %}
                                             <td>
-                                                <form action="" method="POST">
+                                                <form action="{% url 'cart' %}" method="POST">
                                                     {% csrf_token %}
                                                     <div class="input-group">
                                                     <input id="input-quantity" name="quantity" type="text" value="{{ item.quantity }}" class="input-quantity">
                                                     <input name="product_id" type="hidden" value="{{ item.product.id }}">
                                                     </div>
-                                                    <button type="submit">Add</button>
-                                                </form>                                              
+                                                    
+                                                    {% comment %} <button type="submit">Update</button> {% endcomment %}
+                                                                                              
                                             </td>
                                             <td class="product-total">
                                                 <span class="cart-subtotal"></span>
@@ -73,7 +74,13 @@
                                                     <i class="p-icon-times"></i>
                                                 </a>
                                             </td>
+                                            <td class="product-remove">
+                                                <button type="submit" class="btn-remove" title="update quantity">
+                                                    <i class="p-icon-check"></i>
+                                                </button>
+                                            </td>
                                         </tr>
+                                    </form>
                                     {% endfor %}
                                     
                                 </tbody>
@@ -82,9 +89,9 @@
                                 <a href="{% url 'shop' %}"
                                     class="btn btn-dim btn-icon-left mr-4 mb-4"><i
                                         class="p-icon-arrow-long-left"></i>Continue Shopping</a>
-                                <button onclick="updateCart()" type="submit" class="btn btn-outline btn-dim">Update
-                                    Cart</button>
-                            </div>
+                                {% comment %} <button type="submit" class="btn btn-outline btn-dim ">Update
+                                    Cart</button> {% endcomment %}
+                            </div>                    
                             <div class="cart-coupon-box pt-5 pb-8">
                                 <h4 class="title coupon-title text-capitalize mb-4">Coupon Discount</h4>
                                 <form action="cart.html#">
