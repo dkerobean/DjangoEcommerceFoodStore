@@ -20,8 +20,6 @@
 // }
 
 
-
-
 // function updateCart() {
 //     var inputQuantity = document.querySelectorAll(".input-quantity");
 

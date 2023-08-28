@@ -323,11 +323,6 @@ def view_cart(request):
     return render(request, 'frontend/cart/view_cart.html', context)
 
 
-@login_required(login_url="login-register")
-def checkout(request):
-    return render(request, 'frontend/cart/checkout.html')
-    
-
 
 @login_required(login_url="login-register")
 def remove_from_cart(request, cart_item_id):
@@ -347,6 +342,20 @@ def remove_from_cart(request, cart_item_id):
         return redirect(redirect_url)
 
     return redirect('cart')
+
+
+@login_required(login_url="login-register")
+def checkout(request):
+    
+    user_profile = request.user.profile
+    user_address = Address.objects.get(user_profile=user_profile)
+    
+    context = {
+        'user_address': user_address
+    }
+    
+    return render(request, 'frontend/cart/checkout.html', context)
+    
 
 
 
