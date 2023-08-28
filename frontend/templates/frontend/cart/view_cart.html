@@ -56,9 +56,14 @@
                                                 </div>
                                             </td> {% endcomment %}
                                             <td>
-                                                <div class="input-group">
-                                                <input id="input-quantity" type="text" value="{{ item.quantity }}" class="input-quantity">
-                                                </div>
+                                                <form action="" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="input-group">
+                                                    <input id="input-quantity" name="quantity" type="text" value="{{ item.quantity }}" class="input-quantity">
+                                                    <input name="product_id" type="hidden" value="{{ item.product.id }}">
+                                                    </div>
+                                                    <button type="submit">Add</button>
+                                                </form>                                              
                                             </td>
                                             <td class="product-total">
                                                 <span class="cart-subtotal"></span>

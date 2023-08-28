@@ -7,7 +7,6 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth import logout as auth_logout
 from .forms import UserRegistrationForm, UserProfileEditForm, UserAddressEditForm
-
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -186,10 +185,11 @@ def view_product(request, pk):
     categories = product.category.all()
     
     # product tags
-    tags = product.tag.all()
-       
+    tags = product.tag.all() 
+          
     # add review
-    if request.method =='POST':
+    if request.method =='POST':    
+            
         title = request.POST.get('title')
         review = request.POST.get('review')
         rating = request.POST.get('rating')
@@ -316,8 +316,18 @@ def view_cart(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
     cart_items = cart.cartitem_set.all()
     
+    # edit cart quantity
+    if request.method == 'POST':
+        quantity = request.POST.get('quantity')
+        product_id = request.POST.get('product_id')
+        cart_item = CartItem.objects.get(cart=cart, product=product_id)
+        cart_item.quantity = int(quantity)
+        cart_item.save()
+        messages.success(request, 'Quantity updated successfully')
+        return redirect('cart')
+            
     context = {
-        "cart_items":cart_items
+        "cart_items": cart_items, 
     }
     
     return render(request, 'frontend/cart/view_cart.html', context)

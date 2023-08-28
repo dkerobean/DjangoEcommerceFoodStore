@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import UserProfile, Address
+from .models import UserProfile, Address, CartItem
 from django import forms
 
 
@@ -52,6 +52,21 @@ class UserAddressEditForm(ModelForm):
             field.widget.attrs.update(
                 {'class': 'input',
                  'placeholder': field.label})
+            
+            
+# class CartQuantityUpdateForm(ModelForm):
+    
+#     class Meta:
+#         model = CartItem
+#         fields = ['quantity']
+        
+#     def __init__(self, *args, **kwargs):
+#         super(CartQuantityUpdateForm, self).__init__(*args, **kwargs)
+
+#         for name, field in self.fields.items():
+#             field.widget.attrs.update(
+#                 {'class': 'input',
+#                  'placeholder': field.label})
         
     
     
