@@ -18,72 +18,17 @@
                             <div class="row">
                             {% if not user_address %}
                                 <div class="col-lg-7 mb-6 mb-lg-0 check-detail">
-                                    <h3 class="title text-left mt-3 mb-6">Billing Details</h3>
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <label>First Name*</label>
-                                            <input type="text" class="form-control" name="first-name" required />
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <label>Last Name*</label>
-                                            <input type="text" class="form-control" name="last-name" required />
-                                        </div>
-                                    </div>
-                                    <label>Company Name (optional)</label>
-                                    <input type="text" class="form-control" name="company-name" />
-                                    <label>Country / Region*</label>
-                                    <div class="select-box">
-                                        <select name="country" class="form-control">
-                                            <option value="us" selected>United States (US)</option>
-                                            <option value="uk"> United Kingdom</option>
-                                            <option value="fr">France</option>
-                                            <option value="aus">Austria</option>
-                                        </select>
-                                    </div>
-                                    <label>Street Address</label>
-                                    <input type="text" class="form-control" name="address1" required placeholder="House number and street name" />
-                                    <input type="text" class="form-control" name="address2" required placeholder="Apartment, suite, unit, etc. (optional)" />
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <label>Town / City</label>
-                                            <input type="text" class="form-control" name="city" required />
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <label>State / Country*</label>
-                                            <input type="text" class="form-control" name="state" required />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <label>Postcode / ZIP*</label>
-                                            <input type="text" class="form-control" name="zip" required />
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <label>Phone*</label>
-                                            <input type="text" class="form-control" name="phone" required />
-                                        </div>
-                                    </div>
-                                    <label>Email Address*</label>
-                                    <input type="text" class="form-control" name="email-address" required />
-                                    <div class="form-checkbox">
-                                        <input type="checkbox" class="custom-checkbox" id="create-account" name="create-account" />
-                                        <label class="form-control-label" for="create-account">Create an account?</label>
-                                    </div>
-                                    <div class="form-checkbox mb-10">
-                                        <input type="checkbox" class="custom-checkbox" id="different-address" name="different-address" />
-                                        <label class="form-control-label ls-s" for="different-address">Ship to a different address?</label>
-                                    </div>
-                                    <h2 class="title pt-2 mb-6">Additional Information</h2>
-                                    <label>Order Notes (optional)</label>
-                                    <textarea class="form-control mb-0" cols="30" rows="5" placeholder="Write Your Review Here..."></textarea>
+                                    <h3 class="title text-left mt-3 mb-6">No Billing Address Found</h3>
+                                    <a href="{% url 'user-dashboard' %}" class="btn btn-link btn-primary btn-underline">Add your
+                                                    billing address<i class="p-icon-arrow-long-right"></i></a> 
                                 </div>
                             {% endif%}
                             <div class="col-lg-7 mb-6 mb-lg-0 check-detail">
                                     <h3 class="title text-left mt-3 mb-6">Billing Details</h3>
-                                    <h4 class="title pt-2 mb-6">Name: {{ request.user.first_name }} {{ request.user.last_name }}</h4> 
-                                    <h4 class="title pt-2 mb-6">Location: {{ user_address.city }}</h4>
-                                    <h4 class="title pt-2 mb-6">Address: {{ user_address.address }}</h4>
-                                    <h4 class="title pt-2 mb-6">Contact Number: {{ user_address.phone_number }}</h4>   
+                                    <h4 class="title pt-2 mb-2">Name: {{ request.user.first_name }} {{ request.user.last_name }}</h4> 
+                                    <h4 class="title pt-2 mb-2">Location: {{ user_address.city }}</h4>
+                                    <h4 class="title pt-2 mb-2">Address: {{ user_address.address }}</h4>
+                                    <h4 class="title pt-2 mb-2">Contact Number: {{ user_address.phone_number }}</h4>   
                                     <a href="{% url 'user-dashboard' %}" class="btn btn-link btn-primary btn-underline">Edit your
                                                     billing address<i class="p-icon-arrow-long-right"></i></a>     
                                 <div class="cart-actions mb-6 pt-6">
