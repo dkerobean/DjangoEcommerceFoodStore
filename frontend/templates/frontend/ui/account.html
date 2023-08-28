@@ -219,17 +219,13 @@
                                                 <td class="product-subtitle">Product</td>
                                                 <td></td>
                                             </tr>
-                                            <tr>
+                                            {% for product in cart_items  %}
+                                                <tr>
                                                 <td class="product-name">Juice <span><i class="p-icon-times"></i>
                                                         1</span></td>
                                                 <td class="product-price">$129.99</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="product-name">Greenhouse Cherry <span><i
-                                                            class="p-icon-times"></i>
-                                                        2</span></td>
-                                                <td class="product-price">$98.00</td>
-                                            </tr>
+                                                </tr>
+                                            {% endfor %}                                            
                                             <tr class="summary-subtotal">
                                                 <td>
                                                     <h4 class="summary-subtitle">Subtotal:</h4>

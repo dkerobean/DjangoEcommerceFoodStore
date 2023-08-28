@@ -6,13 +6,11 @@
 
     <main class="main cart">
             <div class="page-content pt-8 pb-10 mb-4">
-                <div class="step-by">
-                    <h3 class="title title-step active"><a href="cart.html">1.Shopping Cart</a></h3>
-                    <h3 class="title title-step"><a href="#">2.Checkout</a>
-                    </h3>
-                    <h3 class="title title-step"><a href="#">3.Order
-                            Complete</a></h3>
-                </div>
+                <div class="step-by pr-4 pl-4">
+                        <h3 class="title title-step"><a href="{% url 'cart' %}">1. Shopping Cart</a></h3>
+                        <h3 class="title title-step active"><a href="{% url 'checkout' %}">2. Checkout</a></h3>
+                        <h3 class="title title-step"><a href="#">3. Order Complete</a></h3>
+                    </div>
                 <div class="container mt-7 mb-2">
                     <div class="row">
                         <div class="col-lg-8 col-md-12 pr-lg-6">

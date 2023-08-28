@@ -7,9 +7,9 @@
    <main class="main checkout">
                 <div class="page-content pt-8 pb-10 mb-4">
                     <div class="step-by pr-4 pl-4">
-                        <h3 class="title title-step"><a href="cart.html">1. Shopping Cart</a></h3>
-                        <h3 class="title title-step active"><a href="checkout.html">2. Checkout</a></h3>
-                        <h3 class="title title-step"><a href="order.html">3. Order Complete</a></h3>
+                        <h3 class="title title-step"><a href="{% url 'cart' %}">1. Shopping Cart</a></h3>
+                        <h3 class="title title-step active"><a href="{% url 'checkout' %}">2. Checkout</a></h3>
+                        <h3 class="title title-step"><a href="#">3. Order Complete</a></h3>
                     </div>
                     <div class="container mt-7">
                         
@@ -19,10 +19,10 @@
                             {% if not user_address %}
                                 <div class="col-lg-7 mb-6 mb-lg-0 check-detail">
                                     <h3 class="title text-left mt-3 mb-6">No Billing Address Found</h3>
-                                    <a href="{% url 'user-dashboard' %}" class="btn btn-link btn-primary btn-underline">Add your
+                                    <a href="{% url 'user-dashboard' %}" class="btn btn-link btn-primary btn-underline"> your
                                                     billing address<i class="p-icon-arrow-long-right"></i></a> 
                                 </div>
-                            {% endif%}
+                            {% endif %}
                             <div class="col-lg-7 mb-6 mb-lg-0 check-detail">
                                     <h3 class="title text-left mt-3 mb-6">Billing Details</h3>
                                     <h4 class="title pt-2 mb-2">Name: {{ request.user.first_name }} {{ request.user.last_name }}</h4> 
@@ -50,14 +50,12 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="product-name">Vegatable<span class="product-quantity">×&nbsp;1</span></td>
-                                                        <td class="product-total text-body">$110.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="product-name">Fruit<span class="product-quantity">×&nbsp;1</span></td>
-                                                        <td class="product-total text-body">$180.00</td>
-                                                    </tr>
+                                                    {% for item in cart_items  %}
+                                                        <tr>
+                                                            <td class="product-name"> {{ item.product.name }} <span class="product-quantity">×&nbsp;1</span></td>
+                                                            <td class="product-total text-body">${{ item.product.price }}</td>
+                                                        </tr>
+                                                    {% endfor %}                                                   
                                                     
                                                     <tr class="summary-total">
                                                         <td>
