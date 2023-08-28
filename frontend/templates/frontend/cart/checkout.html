@@ -41,7 +41,7 @@
                                 <aside class="col-lg-5 sticky-sidebar-wrapper pl-lg-6">
                                     <div class="sticky-sidebar" data-sticky-options="{'bottom': 50}">
                                         <div class="summary pt-5">
-                                            <h3 class="title">Your Order</h3>
+                                        <h3 class="title">Your Order</h3>
                                             <table class="order-sidebar">
                                                 <thead>
                                                     <tr>
@@ -52,8 +52,8 @@
                                                 <tbody>
                                                     {% for item in cart_items  %}
                                                         <tr>
-                                                            <td class="product-name"> {{ item.product.name }} <span class="product-quantity">×&nbsp;1</span></td>
-                                                            <td class="product-total text-body">${{ item.product.price }}</td>
+                                                            <td class="product-name"> {{ item.product.name }} x <span class="item-quantity">{{ item.quantity }}</span></td>
+                                                            <td class="item-total text-body">${{ item.product.price }}</td>
                                                         </tr>
                                                     {% endfor %}                                                   
                                                     
@@ -62,7 +62,7 @@
                                                             <h4 class="summary-subtitle">Total</h4>
                                                         </td>
                                                         <td>
-                                                            <p class="summary-total-price ls-s">$290.00</p>
+                                                            <p id="item-total" class="summary-total-price ls-s">$290.00</p>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -99,5 +99,7 @@
                     </div>
                 </div>
         </main>
+
+        <script src="{% static 'js/checkout.js' %}"></script>
 
 {% endblock content %}
