@@ -303,6 +303,16 @@ def delete_review(request, pk):
     
     return render(request, 'admin_dashboard/reviews/view_reviews.html')
 
+
+""" ORDERS """
+
+@user_passes_test(is_staff)
+def order_history(request):
+    
+    
+    
+    return render(request, 'admin_dashboard/order/order_history.html')
+
     
     
     
