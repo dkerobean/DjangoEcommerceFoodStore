@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from frontend.models import Category, Product, Tag, Review
+from frontend.models import Category, Product, Tag, Review, Order
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
@@ -309,9 +309,14 @@ def delete_review(request, pk):
 @user_passes_test(is_staff)
 def order_history(request):
     
+    orders = Order.objects.all()
     
     
-    return render(request, 'admin_dashboard/order/order_history.html')
+    context = {
+        'orders' : orders
+    }
+    
+    return render(request, 'admin_dashboard/order/order_history.html', context)
 
     
     
