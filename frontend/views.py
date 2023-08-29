@@ -419,6 +419,9 @@ def account_dashboard(request):
     user = request.user
     user_profile = request.user.profile
     
+    #user orders 
+    orders = Order.objects.filter(user_profile=request.user.profile)
+    
     # user address 
     address_form = UserAddressEditForm()
     
@@ -462,7 +465,8 @@ def account_dashboard(request):
     context = {
         'profile_form':profile_form,
         'address_form':address_form, 
-        'user_address':user_address
+        'user_address':user_address,
+        'orders':orders
     }
     
     
