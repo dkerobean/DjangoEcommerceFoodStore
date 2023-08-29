@@ -374,6 +374,7 @@ def checkout(request):
         
         order.products.set(products)
         order.save()
+        cart.delete()
         
         messages.success(request, 'Order Placed successfully')
         return redirect('order-complete')
