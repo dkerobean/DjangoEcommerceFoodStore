@@ -403,7 +403,9 @@ def order_complete(request):
     
   
     return render(request, 'frontend/cart/order_complete.html', context)
-    
+
+
+""" Frontend Pages """ 
 
 def about_page(request):
 
@@ -415,6 +417,9 @@ def contact_page(request):
     return render(request, 'frontend/ui/contact.html')
 
 
+""" User Account """
+
+@login_required(login_url="login-register")
 def account_dashboard(request):
     
     # account info 
@@ -476,3 +481,9 @@ def account_dashboard(request):
     
     
     return render(request, 'frontend/ui/account.html', context)
+
+
+@login_required(login_url="login-register")
+def delete_order(request):
+    
+    return render(request, 'frontend/ui/account.html')
