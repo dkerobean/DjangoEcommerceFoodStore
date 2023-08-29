@@ -484,6 +484,13 @@ def account_dashboard(request):
 
 
 @login_required(login_url="login-register")
-def delete_order(request):
+def delete_order(request, order_id):
+    
+    order = Order.objects.get(order_id = order_id)
+    
+    order.delete()
+    messages.success(request, 'Order Deleted Successfully')
+    return redirect('user-dashboard')
+    
     
     return render(request, 'frontend/ui/account.html')

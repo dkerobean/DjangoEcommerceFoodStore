@@ -151,7 +151,7 @@
                                                 <td class="order-date"><span>{{ order.order_date|timesince }} ago</span></td>
                                                 <td class="order-status"><span>{{ order.order_status }}</span></td>
                                                 <td class="order-total"><span>${{ order.order_total}}</span></td>
-                                                <td class="order-action"><a href="account.html#orders-view"
+                                                <td class="order-action"><a href="{% url 'delete-order' order.order_id %}"
                                                         class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm">Delete</a>
                                                 </td>
                                             </tr>
