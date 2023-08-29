@@ -9,3 +9,9 @@ for (var i = 0; i < productQuantity.length; i++) {
 }
 
 productTotal.textContent = "$" + total.toFixed(2); 
+
+// set order total in checkout 
+var orderTotal = document.getElementById("order-total1");
+orderTotal.value = total.toFixed(2);
+
+console.log("Order total: " + orderTotal.value);

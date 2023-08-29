@@ -14,7 +14,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth import get_user_model
 import base64
-from .models import Category, Product, Tag, Review, Address
+from .models import Category, Product, Tag, Review, Address, Order
 
 from .tokens import account_activation_token
 import random
@@ -333,7 +333,6 @@ def view_cart(request):
     return render(request, 'frontend/cart/view_cart.html', context)
 
 
-
 @login_required(login_url="login-register")
 def remove_from_cart(request, cart_item_id):
     
@@ -360,15 +359,45 @@ def checkout(request):
     user_profile = request.user.profile
     user_address = Address.objects.get(user_profile=user_profile)
     
+    # place order 
+    if request.method == 'POST':
+        order_total = float(request.POST.get('order_total'))
+        
+        #get cart items
+        cart = Cart.objects.get(user=request.user)
+        products = [item.product for item in cart.cartitem_set.all()]
+        
+        order = Order.objects.create(
+            user_profile=user_profile, 
+            order_total=order_total
+            )
+        
+        order.products.set(products)
+        order.save()
+        
+        messages.success(request, 'Order Placed successfully')
+        return redirect('order-complete')
+    
     context = {
         'user_address': user_address
     }
     
     return render(request, 'frontend/cart/checkout.html', context)
+
+
+@login_required(login_url="login-register")
+def order_complete(request):
     
-
-
-
+    user_profile = request.user.profile
+    user_address = Address.objects.get(user_profile=user_profile)
+    
+    context = {
+        'user_address': user_address
+    }
+    
+  
+    return render(request, 'frontend/cart/order_complete.html', context)
+    
 
 def about_page(request):
 

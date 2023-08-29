@@ -14,7 +14,7 @@
                     <div class="container mt-7">
                         
                         
-                            <form action="#" class="form">
+                            
                             <div class="row">
                             {% if not user_address %}
                                 <div class="col-lg-7 mb-6 mb-lg-0 check-detail">
@@ -90,12 +90,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-dim btn-block mt-6">Place Order</button>
+                                            <form id="checkout-form" action="" method="POST">
+                                                {% csrf_token %}                                                
+                                                <input id="order-total1" type="hidden" name="order_total">
+                                                <button id="checkout-button" type="submit" class="btn btn-dim btn-block mt-6">Place Order</button>
+                                            </form>                                            
                                         </div>
                                     </div>
                                 </aside>
                             </div>
-                        </form>                                                  
+                                                                         
                     </div>
                 </div>
         </main>
