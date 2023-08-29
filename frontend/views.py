@@ -367,6 +367,11 @@ def checkout(request):
         cart = Cart.objects.get(user=request.user)
         products = [item.product for item in cart.cartitem_set.all()]
         
+        #handle no product in cart error
+        if not products:
+            messages.error(request, 'No products in the cart')
+            return redirect('cart')
+        
         order = Order.objects.create(
             user_profile=user_profile, 
             order_total=order_total
