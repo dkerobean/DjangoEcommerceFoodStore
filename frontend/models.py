@@ -106,7 +106,7 @@ class Order(models.Model):
                           primary_key=True, editable=False)
 
     def __str__(self):
-        return f"Order #{self.order_id}"
+        return f"Order #{self.order_id}"    
     
     def save(self, *args, **kwargs):
         if not self.order_id:

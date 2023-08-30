@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from frontend.models import Category, Product, Tag, Review, Order
+from frontend.models import Category, Product, Tag, Review, Order, UserProfile
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
@@ -249,11 +249,14 @@ def delete_tag(request, pk):
 @user_passes_test(is_staff)
 def list_users(request):
     
+    user_profile = UserProfile.objects.all()
+    
     all_users = User.objects.all()
     
     
     context = {
-        'all_users': all_users
+        'all_users': all_users,
+        'user_profile': user_profile
     }
     
     

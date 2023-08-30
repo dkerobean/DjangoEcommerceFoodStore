@@ -41,11 +41,11 @@
 											</thead>
 
 											<tbody>
-                                            {% for user in all_users %}
+                                            {% for user in user_profile %}
 												<tr>
-													<td>{{ user.username }}</td>
+													<td>{{ user.address }}</td>
 													<td>{{ user.email }}</td>
-													<td>{{ user.profile.address.phone_number }}</td>
+													<td>{{ user.phone_number }}</td>
                                                     <td>Accra Ghana</td>
 													<td>6061</td>
                                                     
@@ -74,8 +74,7 @@
                                                                     <span class="sr-only">Info</span>
                                                                 </button>
 
-                                                                <div class="dropdown-menu">     
-                                                                    <p>{{ user.id }}</p>                                                              
+                                                                <div class="dropdown-menu">                                                                                                             
                                                                     <a class="dropdown-item" href="{% url 'deactivate-user' user.id %}">Deactivate</a>
                                                                 </div>
                                                             </div>
