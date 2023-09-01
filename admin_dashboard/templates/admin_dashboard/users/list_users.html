@@ -41,11 +41,11 @@
 											</thead>
 
 											<tbody>
-                                            {% for user in user_profile %}
+                                            {% for user in profiles %}
 												<tr>
-													<td>{{ user.email }}</td>
-													<td>{{ user.email }}</td>
-													<td>{{ user.phone_number }}</td>
+													<td>{{user.username}}</td>
+													<td>{{ user.profile.email }}</td>
+													<td>{{ user.profile.address.phone_number }}</td>
                                                     <td>Accra Ghana</td>
 													<td>6061</td>
                                                     
