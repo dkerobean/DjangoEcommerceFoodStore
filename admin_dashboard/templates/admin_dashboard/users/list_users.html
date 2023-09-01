@@ -41,9 +41,9 @@
 											</thead>
 
 											<tbody>
-                                            {% for user in profiles %}
+                                            {% for user in all_users %}
 												<tr>
-													<td>{{user.username}}</td>
+													<td>{{ user.username }}</td>
 													<td>{{ user.profile.email }}</td>
 													<td>{{ user.profile.address.phone_number }}</td>
                                                     <td>Accra Ghana</td>
