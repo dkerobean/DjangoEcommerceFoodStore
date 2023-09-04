@@ -83,20 +83,20 @@
                                     <tr>
                                         <td class="product-subtitle">Product</td>
                                         <td></td>
-                                    </tr> 
+                                    </tr>                                     
                                     {% for item in cart_items %}
-                                        <tr>q
+                                        <tr>
                                             <td class="product-name">
                                                 {{ item.product.name }} <span><i class="p-icon-times"></i> {{ item.product.quantity }}</span>
                                             </td>
                                             <td class="product-price">${{ item.product.price }}</td>
                                         </tr>
-                                    {% endfor %}                                                                      
+                                    {% endfor %}                                                                                                        
                                     <tr class="summary-subtotal">
                                         <td>
                                             <h4 class="summary-subtitle">Subtotal:</h4>
                                         </td>
-                                        <td class="summary-value font-weight-normal">$325.99</td>
+                                        <td class="summary-value font-weight-normal">${{ order.order_total }}</td>
                                     </tr>
                                     <tr class="summary-subtotal">
                                         <td>
@@ -109,7 +109,7 @@
                                             <h4 class="summary-subtitle">Total:</h4>
                                         </td>
                                         <td>
-                                            <p class="summary-total-price">$325.99</p>
+                                            <p class="summary-total-price">${{ order.order_total }}</p>
                                         </td>
                                     </tr>
                                 </tbody>

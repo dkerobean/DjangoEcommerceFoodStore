@@ -403,7 +403,7 @@ def order_complete(request):
     
     user_profile = request.user.profile
     user_address = Address.objects.get(user_profile=user_profile)
-    order = Order.objects.get(order_id =order_id)
+    order = Order.objects.get(order_id = order_id)
     
     context = {
         'user_address': user_address, 
