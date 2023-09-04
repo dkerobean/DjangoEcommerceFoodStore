@@ -378,8 +378,12 @@ def checkout(request):
             )
         
         order.products.set(products)
+        order_id = order.order_id
         order.save()
         cart.delete()
+        
+        #store order id in a session 
+        request.session['order_id'] = order_id
         
         messages.success(request, 'Order Placed successfully')
         return redirect('order-complete')
@@ -394,11 +398,17 @@ def checkout(request):
 @login_required(login_url="login-register")
 def order_complete(request):
     
+    #retrieve order id 
+    order_id = request.session.get('order_id')
+    
     user_profile = request.user.profile
     user_address = Address.objects.get(user_profile=user_profile)
+    order = Order.objects.get(order_id =order_id)
     
     context = {
-        'user_address': user_address
+        'user_address': user_address, 
+        'order':order,
+        'order_id': order_id
     }
     
   

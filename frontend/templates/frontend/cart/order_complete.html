@@ -45,7 +45,7 @@
                         <div class="order-results row cols-xl-6 cols-md-3 cols-sm-2 mt-10 pt-2 mb-4">
                             <div class="overview-item">
                                 <span>Order number</span>
-                                <label>4446</label>
+                                <label>{{order.order_id }}</label>
                             </div>
                             <div class="overview-item">
                                 <span>Status</span>
@@ -53,15 +53,15 @@
                             </div>
                             <div class="overview-item">
                                 <span>Date</span>
-                                <label>July 23, 2021</label>
+                                <label>{{ order.order_date|date:"Y-m-d"}}</label>
                             </div>
                             <div class="overview-item">
                                 <span>Email:</span>
-                                <label><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9faeadacabaadff8f2fef6f3b1fcf0f2">[email&#160;protected]</a></label>
+                                <label><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9faeadacabaadff8f2fef6f3b1fcf0f2">{{ request.user.profile.email }}</a></label>
                             </div>
                             <div class="overview-item">
                                 <span>Total:</span>
-                                <label>$312.00</label>
+                                <label>${{ order.order_total }}</label>
                             </div>
                             <div class="overview-item">
                                 <span>Payment method:</span>
@@ -83,19 +83,15 @@
                                     <tr>
                                         <td class="product-subtitle">Product</td>
                                         <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-name">
-                                            Juice <span><i class="p-icon-times"></i> 1</span>
-                                        </td>
-                                        <td class="product-price">$129.99</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-name">
-                                            Greenhouse Cherry <span><i class="p-icon-times"></i> 2</span>
-                                        </td>
-                                        <td class="product-price">$196.00</td>
-                                    </tr>
+                                    </tr> 
+                                    {% for item in cart_items %}
+                                        <tr>q
+                                            <td class="product-name">
+                                                {{ item.product.name }} <span><i class="p-icon-times"></i> {{ item.product.quantity }}</span>
+                                            </td>
+                                            <td class="product-price">${{ item.product.price }}</td>
+                                        </tr>
+                                    {% endfor %}                                                                      
                                     <tr class="summary-subtotal">
                                         <td>
                                             <h4 class="summary-subtitle">Subtotal:</h4>
