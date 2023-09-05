@@ -90,11 +90,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <form id="checkout-form" action="" method="POST">
-                                                {% csrf_token %}                                                
+                                            <button type="button" onclick="come();">click</button>
+                                            <form id="paymentForm" action="" method="POST">
+                                                {% csrf_token %}
                                                 <input id="order-total1" type="hidden" name="order_total">
-                                                <button id="checkout-button" type="submit" class="btn btn-dim btn-block mt-6">Place Order</button>
-                                            </form>                                            
+                                                <input type="hidden" id="email-address" value="{{ request.user.profile.email }}">
+                                                <button  type="button" onclick="payWithPaystack();" class="btn btn-dim btn-block mt-6">Place Order</button>
+                                            </form>
+                                           
                                         </div>
                                     </div>
                                 </aside>
@@ -104,6 +107,8 @@
                 </div>
         </main>
 
+        <script src="https://js.paystack.co/v1/inline.js"></script>
         <script src="{% static 'js/checkout.js' %}"></script>
+        
 
 {% endblock content %}

@@ -37,7 +37,7 @@ def user_login(request):
         try:
             user = User.objects.get(username=username)
         except UserNotFound:
-            messages.error(request,"Username or Password is incorrect")
+            messages.error(request, "Username or Password is incorrect")
             return redirect('index')
             
         user = authenticate(request, username=username, password=password)
@@ -169,7 +169,7 @@ def view_product(request, pk):
     
     form = get_user_registration_form()
     
-    #get all products excluding current product
+    # get all products excluding current product
     other_products = Product.objects.exclude(id=pk)
     
     # Convert the QuerySet into a list
@@ -210,30 +210,28 @@ def view_product(request, pk):
         messages.success(request, 'Product rated')
         return redirect('view-product', product_id)
     
-    
     reviews = Review.objects.filter(product=product)
     
     # Calculate the average rating for the product
     avg_rating = reviews.aggregate(average_rating=Avg('rating'))[
         'average_rating']
     
-
     context = {
-        "product":product,
+        "product": product,
         "related_products" : related_products, 
-        "categories":categories,
-        "tags":tags,
-        "form":form, 
-        "reviews":reviews, 
+        "categories": categories,
+        "tags": tags,
+        "form": form, 
+        "reviews": reviews, 
         "average_rating": round(avg_rating, 2) / 20 if avg_rating else 0.0,
-        "avg_rating":avg_rating
+        "avg_rating": avg_rating
     }
     
     return render(request, 'frontend/product/view_product.html', context)
 
 
-
 """ SHOP """
+
 
 def shop_page(request):
     
@@ -251,16 +249,15 @@ def shop_page(request):
         # Store the average rating in the ratings dictionary with the product's ID as the key
         ratings[product.id] = average_rating
         
-    
     context = {
-        "categories":categories,
-        "products":products,  
-         "ratings":ratings,
-         "tags":tags      
+        "categories": categories,
+        "products": products,  
+        "ratings": ratings,
+        "tags": tags      
     }    
-    
 
     return render(request, 'frontend/ui/shop.html', context)
+
 
 def filter_products(request, q):
     
@@ -289,7 +286,7 @@ def filter_products(request, q):
 @login_required(login_url="login-register")
 def add_to_cart(request, product_id):
     
-    next_url = request.GET.get('next', 'index')
+    # next_url = request.GET.get('next', 'index')
     
     product = get_object_or_404(Product, pk=product_id)
     cart, created = Cart.objects.get_or_create(user=request.user)
@@ -359,15 +356,15 @@ def checkout(request):
     user_profile = request.user.profile
     user_address = Address.objects.get(user_profile=user_profile)
     
-    # place order 
+    # place order
     if request.method == 'POST':
         order_total = float(request.POST.get('order_total'))
         
-        #get cart items
+        # get cart items
         cart = Cart.objects.get(user=request.user)
         products = [item.product for item in cart.cartitem_set.all()]
         
-        #handle no product in cart error
+        # handle no product in cart error
         if not products:
             messages.error(request, 'No products in the cart')
             return redirect('cart')
@@ -382,7 +379,7 @@ def checkout(request):
         order.save()
         cart.delete()
         
-        #store order id in a session 
+        # store order id in a session 
         request.session['order_id'] = order_id
         
         messages.success(request, 'Order Placed successfully')
@@ -398,24 +395,24 @@ def checkout(request):
 @login_required(login_url="login-register")
 def order_complete(request):
     
-    #retrieve order id 
+    # retrieve order id 
     order_id = request.session.get('order_id')
     
     user_profile = request.user.profile
     user_address = Address.objects.get(user_profile=user_profile)
-    order = Order.objects.get(order_id = order_id)
+    order = Order.objects.get(order_id=order_id)
     
     context = {
         'user_address': user_address, 
-        'order':order,
+        'order': order,
         'order_id': order_id
     }
     
-  
     return render(request, 'frontend/cart/order_complete.html', context)
 
 
 """ Frontend Pages """ 
+
 
 def about_page(request):
 
@@ -428,6 +425,7 @@ def contact_page(request):
 
 
 """ User Account """
+
 
 @login_required(login_url="login-register")
 def account_dashboard(request):
@@ -480,15 +478,13 @@ def account_dashboard(request):
         })
         
         address_form = UserAddressEditForm(instance=user_address)
-      
         
     context = {
-        'profile_form':profile_form,
-        'address_form':address_form, 
-        'user_address':user_address,
-        'orders':orders
+        'profile_form': profile_form,
+        'address_form': address_form, 
+        'user_address': user_address,
+        'orders': orders
     }
-    
     
     return render(request, 'frontend/ui/account.html', context)
 
@@ -496,11 +492,10 @@ def account_dashboard(request):
 @login_required(login_url="login-register")
 def delete_order(request, order_id):
     
-    order = Order.objects.get(order_id = order_id)
+    order = Order.objects.get(order_id=order_id)
     
     order.delete()
     messages.success(request, 'Order Deleted Successfully')
     return redirect('user-dashboard')
-    
     
     return render(request, 'frontend/ui/account.html')
