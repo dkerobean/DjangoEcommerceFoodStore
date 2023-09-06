@@ -1,50 +1,52 @@
-document.addEventListener("DOMContentLoaded", function () {
-      // Paystack payment request
-   function payWithPaystack() {
-      var handler = PaystackPop.setup({
-         key: 'pk_test_5d771c071afa4a41656e20bc1780d18fdc05d728', // Replace with your public key
-         email: document.getElementById('email-address').value,
-         amount: orderTotal.value * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
-         currency: 'USD', // Use GHS for Ghana Cedis or USD for US Dollars
-         ref: 'YOUR_REFERENCE', // Replace with a reference you generated
-         callback: function (response) {
-               // This happens after the payment is completed successfully
-               var reference = response.reference;
-               alert('Payment complete! Reference: ' + reference);
-               // Make an AJAX call to your server with the reference to verify the transaction
 
-               // Now, submit the form programmatically
-               paymentForm.submit();
-         },
-         onClose: function () {
-               alert('Transaction was not completed, window closed.');
-         },
-      });
-      handler.openIframe();
-   }
+var productQuantity = document.querySelectorAll('.item-quantity');
+var productPrice = document.querySelectorAll('.item-total');
+var productTotal = document.getElementById("item-total");
+
+var total = 0;
+
+for (var i = 0; i < productQuantity.length; i++) {
+   total += parseFloat(productQuantity[i].textContent) * parseFloat(productPrice[i].textContent.slice(1));
+}
+
+productTotal.textContent = "$" + total.toFixed(2);
 
 
-   function come(){
-      alert('Payment');
-   }
+// set order total in checkout
+var orderTotal = document.getElementById("order-total1");
+orderTotal.value = total.toFixed(2);
 
-   var productQuantity = document.querySelectorAll('.item-quantity');
-   var productPrice = document.querySelectorAll('.item-total');
-   var productTotal = document.getElementById("item-total");
+var ammount = parseFloat(orderTotal.value) * 100
 
-   var total = 0; 
+// generate random reference
+function generateFunction(){
+   var randomNumber = Math.random().toString().slice(2, 12);
+   var reference = 'REF-' + randomNumber;
 
-   for (var i = 0; i < productQuantity.length; i++) {
-      total += parseFloat(productQuantity[i].textContent) * parseFloat(productPrice[i].textContent.slice(1));
-   }
+   return reference
+}
 
-   productTotal.textContent = "$" + total.toFixed(2); 
+var randomReference = generateFunction();
 
 
-   // set order total in checkout 
-   var orderTotal = document.getElementById("order-total1");
-   orderTotal.value = total.toFixed(2);
+// Process Payment using Paystack API
+var paymentForm = document.getElementById('paymentForm');
+paymentForm.addEventListener('submit', payWithPaystack, false);
+function payWithPaystack() {
+  var handler = PaystackPop.setup({
+    key: 'pk_test_5d771c071afa4a41656e20bc1780d18fdc05d728',
+    email: document.getElementById('email-address').value,
+    amount: ammount,
+    currency: 'GHS',
+    ref: randomReference,
+    callback: function(response) {
+      var reference = response.reference;
+      paymentForm.submit();
+    },
+    onClose: function() {
+      toastr.error('Transaction was not completed, window closed.');
+    },
+  });
+  handler.openIframe();
+}
 
-   console.log("Order total: " + orderTotal.value);
-   
-});

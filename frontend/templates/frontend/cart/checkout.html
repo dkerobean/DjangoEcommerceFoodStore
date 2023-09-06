@@ -12,32 +12,32 @@
                         <h3 class="title title-step"><a href="#">3. Order Complete</a></h3>
                     </div>
                     <div class="container mt-7">
-                        
-                        
-                            
+
+
+
                             <div class="row">
                             {% if not user_address %}
                                 <div class="col-lg-7 mb-6 mb-lg-0 check-detail">
                                     <h3 class="title text-left mt-3 mb-6">No Billing Address Found</h3>
                                     <a href="{% url 'user-dashboard' %}" class="btn btn-link btn-primary btn-underline"> your
-                                                    billing address<i class="p-icon-arrow-long-right"></i></a> 
+                                                    billing address<i class="p-icon-arrow-long-right"></i></a>
                                 </div>
                             {% endif %}
                             <div class="col-lg-7 mb-6 mb-lg-0 check-detail">
                                     <h3 class="title text-left mt-3 mb-6">Billing Details</h3>
-                                    <h4 class="title pt-2 mb-2">Name: {{ request.user.first_name }} {{ request.user.last_name }}</h4> 
+                                    <h4 class="title pt-2 mb-2">Name: {{ request.user.first_name }} {{ request.user.last_name }}</h4>
                                     <h4 class="title pt-2 mb-2">Location: {{ user_address.city }}</h4>
                                     <h4 class="title pt-2 mb-2">Address: {{ user_address.address }}</h4>
-                                    <h4 class="title pt-2 mb-2">Contact Number: {{ user_address.phone_number }}</h4>   
+                                    <h4 class="title pt-2 mb-2">Contact Number: {{ user_address.phone_number }}</h4>
                                     <a href="{% url 'user-dashboard' %}" class="btn btn-link btn-primary btn-underline">Edit your
-                                                    billing address<i class="p-icon-arrow-long-right"></i></a>     
+                                                    billing address<i class="p-icon-arrow-long-right"></i></a>
                                 <div class="cart-actions mb-6 pt-6">
                                     <br>
                                 <a href="{{ request.META.HTTP_REFERER }}"
                                     class="btn btn-dim btn-icon-left mr-4 mb-4"><i
                                         class="p-icon-arrow-long-left"></i>Go Back</a>
                             </div>
-                                </div>                                
+                                </div>
                                 <aside class="col-lg-5 sticky-sidebar-wrapper pl-lg-6">
                                     <div class="sticky-sidebar" data-sticky-options="{'bottom': 50}">
                                         <div class="summary pt-5">
@@ -55,8 +55,8 @@
                                                             <td class="product-name"> {{ item.product.name }} x <span class="item-quantity">{{ item.quantity }}</span></td>
                                                             <td class="item-total text-body">${{ item.product.price }}</td>
                                                         </tr>
-                                                    {% endfor %}                                                   
-                                                    
+                                                    {% endfor %}
+
                                                     <tr class="summary-total">
                                                         <td>
                                                             <h4 class="summary-subtitle">Total</h4>
@@ -71,7 +71,7 @@
                                                 <h4 class="summary-subtitle ls-m pb-3">Payment Methods</h4>
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <a href="#collapse1" class="collapse">Check payments </a>
+                                                        <a href="#collapse1" class="collapse">Pay Now </a>
                                                     </div>
                                                     <div id="collapse1" class="expanded" style="display: block;">
                                                         <div class="card-body">
@@ -79,7 +79,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="card">
+                                                {% comment %} <div class="card">
                                                     <div class="card-header">
                                                         <a href="#collapse2" class="expand">Cash on delivery</a>
                                                     </div>
@@ -88,27 +88,26 @@
                                                             Pay with cash upon delivery.
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> {% endcomment %}
                                             </div>
-                                            <button type="button" onclick="come();">click</button>
                                             <form id="paymentForm" action="" method="POST">
                                                 {% csrf_token %}
                                                 <input id="order-total1" type="hidden" name="order_total">
                                                 <input type="hidden" id="email-address" value="{{ request.user.profile.email }}">
                                                 <button  type="button" onclick="payWithPaystack();" class="btn btn-dim btn-block mt-6">Place Order</button>
                                             </form>
-                                           
+
                                         </div>
                                     </div>
                                 </aside>
                             </div>
-                                                                         
+
                     </div>
                 </div>
         </main>
 
         <script src="https://js.paystack.co/v1/inline.js"></script>
         <script src="{% static 'js/checkout.js' %}"></script>
-        
+
 
 {% endblock content %}
