@@ -150,7 +150,7 @@
                                     <div class="nav-title">{{ category.name }}</div>
                                 </a>
                             </li>
-                            {% endfor %}                                                      
+                            {% endfor %}
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="canned">
@@ -220,16 +220,16 @@
                                                 </h5>
                                                 <span class="product-price">
                                                     {% if not top.sale_price %}
-                                                        <ins class="new-price">${{ top.price }}</ins>                                                        
+                                                        <ins class="new-price">${{ top.price }}</ins>
                                                     {% else %}
                                                         <del class="old-price">${{ top.price }}</del>
                                                         <ins class="new-price">${{ top.sale_price }}</ins>
-                                                    {% endif %}                                                    
+                                                    {% endif %}
                                                 </span>
                                             </div>
-                                        </div>  
+                                        </div>
                                     {% endfor %}
-                                                                      
+
                                 </div>
                             </div>
                             <div class="tab-pane" id="fruits2">
@@ -1187,16 +1187,16 @@
                                     </h5>
                                     <span class="product-price">
                                         {% if not product.sale_price %}
-                                            <ins class="new-price">${{ product.price }}</ins>                                                        
+                                            <ins class="new-price">${{ product.price }}</ins>
                                         {% else %}
                                             <del class="old-price">${{ product.price }}</del>
                                             <ins class="new-price">${{ product.sale_price }}</ins>
-                                        {% endif %}                                                    
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                         {% endfor %}
-                                            
+
 
                     </div>
                     <div class="row mt-10 appear-animate">
@@ -1210,7 +1210,7 @@
                                     <h4 class="banner-subtitle font-weight-normal text-white ls-1 mt-1">
                                         JUST ARRIVED</h4>
                                     <h3 class="banner-title text-white lh-1 mb-3">New DietCoke</h3>
-                                    <a href="https://d-themes.com/html/panda/shop.html"
+                                    <a href="{% url 'shop' %}"
                                         class="btn btn-underline btn-link text-white">Shop
                                         Now<i class="p-icon-arrow-long-right pl-1"></i></a>
                                 </div>
@@ -1227,7 +1227,7 @@
                                         BEST SELLING</h4>
                                     <h3 class="banner-title text-dark lh-1 mb-3">
                                         Special Snack</h3>
-                                    <a href="https://d-themes.com/html/panda/shop.html"
+                                    <a href="{% url 'shop' %}"
                                         class="btn btn-underline btn-link text-dark">Shop
                                         Now<i class="p-icon-arrow-long-right pl-1"></i></a>
                                 </div>
@@ -1304,16 +1304,16 @@
                                     </h5>
                                     <span class="product-price">
                                         {% if not product.sale_price %}
-                                            <ins class="new-price">${{ product.price }}</ins>                                                        
+                                            <ins class="new-price">${{ product.price }}</ins>
                                         {% else %}
                                             <del class="old-price">${{ product.price }}</del>
                                             <ins class="new-price">${{ product.sale_price }}</ins>
-                                        {% endif %}                                                    
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                             {% endfor %}
-                                                       
+
 
                         </div>
                     </div>
@@ -1335,7 +1335,7 @@
                                             'delay': '.4s'
                                         }">
                                 Fresh Vegetables<br>for you</h2>
-                            <a href="https://d-themes.com/html/panda/shop.html" class="btn btn-dark appear-animate"
+                            <a href="{% url 'filter-product' 'Vegetables' %}" class="btn btn-dark appear-animate"
                                 data-animation-options="{
                                             'name': 'fadeInUpShorter',
                                             'delay': '.6s'
@@ -1505,7 +1505,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </section>
             </div>
         </main>

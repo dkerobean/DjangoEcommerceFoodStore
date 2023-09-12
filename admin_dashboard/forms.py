@@ -32,3 +32,15 @@ class AddProductForm(ModelForm):
         # self.fields['product_picture'].widget.attrs.update(
         #     {'class': 'ec-image-upload', 'id': 'imageUpload',
         #     'type': 'file'})
+
+
+class EditCategoryForm(ModelForm):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super(EditCategoryForm, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control'})

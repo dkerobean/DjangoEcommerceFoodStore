@@ -10,6 +10,7 @@ urlpatterns = [
 
     path('add_category/', views.add_category, name="add-category"),
     path('delete_category/<str:pk>/', views.delete_category, name="delete-category"), # noqa
+    path('edit_category/<str:pk>/', views.edit_category, name="edit-category"), # noqa
 
     path('add_product/', views.add_product, name="add-product"),
     path('view_products/', views.view_products, name="view-products"),

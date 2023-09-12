@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from frontend.models import Category, Product, Tag, Review, Order, \
                             UserProfile, Address
@@ -7,7 +7,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
-from .forms import AddProductForm
+from .forms import AddProductForm, EditCategoryForm
 
 
 # check if user is Admin
@@ -98,6 +98,31 @@ def add_category(request):
                   'admin_dashboard/category/add_category.html',
                   context
                   )
+
+
+@user_passes_test(is_staff)
+def edit_category(request, pk):
+
+    category = get_object_or_404(Category, id=pk)
+
+    form = EditCategoryForm(instance=category)
+
+    if request.method == 'POST':
+        form = EditCategoryForm(request.POST, request.FILES, instance=category)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Category edited successfully')
+            return redirect('add-category')
+        else:
+            messages.error(request, "Error updating category. Check the form.")
+
+    context = {
+        'form': form,
+        'category': category
+    }
+
+    return render(request,
+                  'admin_dashboard/category/edit_category.html', context)
 
 
 @user_passes_test(is_staff)
