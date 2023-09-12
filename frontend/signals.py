@@ -6,14 +6,14 @@ from django.contrib.auth.models import User
 
 @receiver(post_save, sender=User)
 def create_profile(sender, created, instance, **kwargs):
-    
+
     if created:
         user = instance
-        profile = UserProfile.objects.create(
-            user = user, 
-            email = user.email   
+        profile=UserProfile.objects.create(      # noqa
+            user=user,
+            email=user.email
         )
-        
+
 
 @receiver(post_delete, sender=User)
 def delete_profile(sender, instance, **kwargs):
@@ -22,11 +22,3 @@ def delete_profile(sender, instance, **kwargs):
         profile.delete()
     except UserProfile.DoesNotExist:
         pass
-    
-    
-        
-        
-        
-
-        
-        
