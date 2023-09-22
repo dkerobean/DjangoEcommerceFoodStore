@@ -9,7 +9,7 @@ on:
 
 jobs:
     flake8:
-        name: Flake8
+        name: Test and Lint
         runs-on: Ubuntu-latest
         steps:
             - name: Checkout code
@@ -23,7 +23,7 @@ jobs:
             - name: Install dependencies
               run: |
                 pip install flake8
-                
+
             - name: Run flake8
               run: |
                 flake8
